@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Hem{% endblock %}
+
+{% block body %}
+<div class="center-container">
+    <img src="{{ asset('img/me.png') }}" alt="En bild på mig">
+    {{ text|raw }}
+</div>
+{% endblock %}

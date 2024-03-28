@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Rapport{% endblock %}
+
+{% block body %}
+{% for reportName, reportData in data %}
+    {{ reportData.text|raw}}
+{% endfor %}
+{% endblock %}
