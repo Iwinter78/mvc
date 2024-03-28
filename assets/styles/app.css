@@ -1,3 +1,7 @@
+@import url(./about.css);
+@import url(./lucky.css);
+@import url(./api.css);
+
 :root {
     --blue: #4be2f2;
     --light-blue: #5fbdc8;
@@ -39,33 +43,6 @@ li a:hover {
     margin: 0 auto;
     width: 50%;
     text-align: center;
-}
-
-@keyframes color-change {
-    0%{
-        color: var(--blue);
-    }
-    25%{
-        color: var(--black);
-    }
-    50%{
-        color: var(--yellow);
-    }
-    75%{
-        color: var(--light-blue);
-    }
-    100%{
-        color: var(--blue);
-    }
-    
-}
-
-.color-change {
-    animation: color-change 5s infinite;
-}
-table, td, tr {
-    border: 1px solid var(--black);
-    border-collapse: collapse; 
 }
 
 .footer {
