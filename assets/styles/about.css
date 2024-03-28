@@ -1,0 +1,9 @@
+.grid {
+    display: grid;
+    justify-content: center;
+}
+
+.grid-item {
+    grid-area: auto auto;
+    text-align: center;
+}

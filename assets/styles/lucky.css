@@ -1,0 +1,22 @@
+@keyframes color-change {
+    0%{
+        color: var(--blue);
+    }
+    25%{
+        color: var(--black);
+    }
+    50%{
+        color: var(--yellow);
+    }
+    75%{
+        color: var(--light-blue);
+    }
+    100%{
+        color: var(--blue);
+    }
+    
+}
+
+.color-change {
+    animation: color-change 5s infinite;
+}
