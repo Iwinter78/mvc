@@ -10,6 +10,6 @@ Here is hopefully a very simple guide as to how to clone the and run the app on 
 
 3. Stand in the root folder of the project and run ```php -S localhost:8888 -t public ```.
 
-4. Access the website by typing ```test localhost:8888 ``` in you web browser.
+4. Access the website by typing ```localhost:8888 ``` in you web browser.
 
 5. Profit!
