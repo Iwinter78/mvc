@@ -11,7 +11,7 @@ class MyController extends AbstractController
     #[Route("/", name: "index")]
     public function start_page(): Response
     {
-        $filename = dirname(__DIR__ ) . "/markdown/index.md";
+        $filename = dirname(__DIR__) . "/markdown/index.md";
         $text     = file_get_contents($filename);
         $filter   = new \Anax\TextFilter\TextFilter();
         $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
@@ -24,7 +24,7 @@ class MyController extends AbstractController
     #[Route("/about", name: "about")]
     public function about(): Response
     {
-        $filename = dirname(__DIR__ ) . "/markdown/about.md";
+        $filename = dirname(__DIR__) . "/markdown/about.md";
         $text     = file_get_contents($filename);
         $filter   = new \Anax\TextFilter\TextFilter();
         $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
@@ -47,10 +47,11 @@ class MyController extends AbstractController
             "kmom10"
         ];
 
-        function parseReports($names_of_reports) {
+        function parseReports($names_of_reports)
+        {
             $data = [];
             for ($c = 0; $c < count($names_of_reports); $c++) {
-                $filename = dirname(__DIR__ ) . "/markdown/" . $names_of_reports[$c] . ".md";
+                $filename = dirname(__DIR__) . "/markdown/" . $names_of_reports[$c] . ".md";
                 if (!file_exists($filename)) {
                     continue;
                 }
