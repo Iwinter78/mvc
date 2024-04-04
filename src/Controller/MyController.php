@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class MyController extends AbstractController
 {
@@ -83,5 +85,11 @@ class MyController extends AbstractController
             "/api/quote" => "Genererar ett random citat"
         ];
         return $this->render('api_routes.html.twig', ["routes" => $avalaible_routes]);
+    }
+    #[Route("/session", name: "all_sessions")]
+    public function all_sessions(Request $request): Response
+    {
+        $session = $request->getSession();
+        return $this->render('session.html.twig', ["session" => $session->all()]);
     }
 }
