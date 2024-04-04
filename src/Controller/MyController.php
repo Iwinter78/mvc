@@ -86,10 +86,20 @@ class MyController extends AbstractController
         ];
         return $this->render('api_routes.html.twig', ["routes" => $avalaible_routes]);
     }
+
     #[Route("/session", name: "all_sessions")]
     public function all_sessions(Request $request): Response
     {
         $session = $request->getSession();
         return $this->render('session.html.twig', ["session" => $session->all()]);
+    }
+
+    #[Route("/session/delete", name: "delete_session")]
+    public function delete_session(Request $request): Response
+    {
+        $session = $request->getSession();
+        $session->clear();
+        $this->addFlash("notice", "Borttagning av sessioner lyckades!");
+        return $this->redirectToRoute("all_sessions");
     }
 }
