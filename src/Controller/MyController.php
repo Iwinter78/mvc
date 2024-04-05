@@ -102,4 +102,10 @@ class MyController extends AbstractController
         $this->addFlash("notice", "Borttagning av sessioner lyckades!");
         return $this->redirectToRoute("all_sessions");
     }
+
+    #[Route("/card", name: "card")]
+    public function card(): Response
+    {
+        return $this->render('card.html.twig');
+    }
 }
