@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kort{% endblock %}
+
+{% block body %}
+<div class="center-container">
+    <ul>
+        <li><a href="{{ path('deck') }}">Visa alla kort</a></li>
+        <li><a href="{{ path('shuffle') }}">Blanda korten</a></li>
+        <li><a href="{{ path('draw') }}">Dra ett kort</a></li>
+        <li><a href="{{ path('draw_multible') }}">Dra flera kort</a></li>
+    </ul>
+</div>
+{% endblock %}
