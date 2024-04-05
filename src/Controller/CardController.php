@@ -35,8 +35,12 @@ class CardController extends AbstractController
             $deck->deck = $session->get('deck');
             $deck->shuffle_deck();
             $session->set('deck', $deck->deck);
+        } else {
+            $deck = new Deck();
+            $deck->shuffle_deck();
+            $session->set('deck', $deck->deck);
         }
-        return $this->render('deck/shuffle.html.twig');
+        return $this->render('deck/shuffle.html.twig', ['deck' => $deck->deck]);
     }
 
     #[Route("/card/deck/draw", name: "draw")]
