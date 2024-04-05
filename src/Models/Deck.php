@@ -47,4 +47,9 @@ class Deck
         $this->deck = array_merge($redCards, $blackCards);
         return $this->deck;
     }
+    function shuffle_deck()
+    {
+        shuffle($this->deck);
+        return $this->deck;
+    }
 }
