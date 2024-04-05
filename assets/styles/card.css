@@ -1,0 +1,25 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+.card {
+    width: 100px;
+    height: 150px;
+    border: 1px solid var(--black);
+}
+
+.card > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+.card > p {
+    margin: 0;
+}
+
+.hearts, .diamonds {
+    color: var(--red);
+}
