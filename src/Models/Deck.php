@@ -47,9 +47,20 @@ class Deck
         $this->deck = array_merge($redCards, $blackCards);
         return $this->deck;
     }
+
     function shuffle_deck()
     {
-        shuffle($this->deck);
-        return $this->deck;
+        return shuffle($this->deck);
+    }
+
+    function draw_card()
+    {
+        $cards_left = count($this->deck);
+        if ($cards_left > 0) {
+            $card = array_pop($this->deck);
+            return $card;
+        } else {
+            return 'Inga kort kvar i högen.';
+        }
     }
 }
