@@ -2,6 +2,7 @@
 @import url(./lucky.css);
 @import url(./api.css);
 @import url(./flashcards.css);
+@import url(./card.css);
 
 :root {
     --blue: #4be2f2;
@@ -9,6 +10,7 @@
     --black: #213133;
     --white: #fff;
     --yellow: #f2c94c;
+    --red: #f00;
 }
 
 body {
