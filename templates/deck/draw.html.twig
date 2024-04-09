@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Deck - Draw a card{% endblock %}
+
+{% block body %}
+<h1>Draw a card</h1>
+
+<h1>Kort kvar: {{ count }}</h1>
+
+{% if card != null %}
+<div class="card-container">
+    <div class="card">{{ card|raw }}</div>
+</div>
+{% endif %}
+
+<form action="" method="POST">
+    <input type="submit" name="drawCard" value="Dra kort"
+    onClick="this.form.action='{{ path('draw_request') }}';">
+</form>
+{% endblock %}
