@@ -1,3 +1,4 @@
+@import url(./navigation.css);
 @import url(./about.css);
 @import url(./lucky.css);
 @import url(./api.css);
@@ -17,31 +18,16 @@ body {
     margin: 0;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: var(--blue);
-}
-  
-li {
-    float: left;
-}
-  
-li a {
-    display: block;
-    color: var(--white);
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-  
-li a:hover {
-    background-color: var(--light-blue);
+.page-container {
+    position: relative;
+    min-height: 100vh;
 }
 
-.center-container {
+.content-wrap {
+    padding-bottom: 2.5rem;
+}
+
+.center-container, .card-container {
     padding: 10px;
     margin: 0 auto;
     width: 50%;
@@ -49,12 +35,13 @@ li a:hover {
 }
 
 .footer {
-    left: 0;
+    position: absolute;
+    text-align: center;
     bottom: 0;
     width: 100%;
-    background-color: var(--light-blue);
-    color: var(--white);
-    text-align: center;
+    height: 2.5rem;
+    background-color: var(--blue);
+    color: var(--white);  
 }
 
 .footer p {
