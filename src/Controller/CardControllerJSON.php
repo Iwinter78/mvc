@@ -12,7 +12,7 @@ use App\Models\Deck;
 
 class CardControllerJSON extends AbstractController
 {
-    #[Route("/api/deck", methods: ['GET'])]
+    #[Route("/api/deck", name: "/api/deck", methods: ['GET'])]
     public function api_deck(): JsonResponse
     {
         $deck = new Deck();
@@ -21,7 +21,7 @@ class CardControllerJSON extends AbstractController
         return new JsonResponse($deck->deck);
     }
 
-    #[Route("/api/deck/shuffle", methods: ['POST'])]
+    #[Route("/api/deck/shuffle", name: "/api/deck/shuffle", methods: ['POST'])]
     public function api_shuffle(Request $request): JsonResponse
     {
         $session = $request->getSession();
@@ -33,7 +33,7 @@ class CardControllerJSON extends AbstractController
         return new JsonResponse($deck->deck);
     }
 
-    #[Route("/api/deck/draw", methods: ['POST'])]
+    #[Route("/api/deck/draw", name:"/api/deck/draw", methods: ['POST'])]
     public function api_draw(Request $request): JsonResponse
     {
         $session = $request->getSession();
@@ -50,8 +50,8 @@ class CardControllerJSON extends AbstractController
         return new JsonResponse($cards);
     }
 
-    #[Route("/api/deck/draw/{amount}", methods: ['POST'])]
-    public function api_draw_amount(Request $request, $amount): JsonResponse
+    #[Route("/api/deck/draw/{amount}", name: "api_deck_draw_amount", methods: ['POST'])]
+    public function api_draw_amount(Request $request, int $amount): JsonResponse
     {
         $session = $request->getSession();
         $deck = new Deck($session->get('deck'));
