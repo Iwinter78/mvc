@@ -44,9 +44,32 @@ class CardController extends AbstractController
     }
 
     #[Route("/card/deck/draw", name: "draw")]
-    public function draw(): Response
+    public function draw(Request $request): Response
+    {   
+        $session = $request->getSession();
+        if (!$session->has('deck')) {
+            $deck = new Deck();
+            $createDeck = $deck->create_deck();
+            $shuffleDeck = $deck->shuffle_deck();
+            $session->set('deck', $deck->deck);
+        }
+        $count = count($session->get('deck'));
+        $session->set('count', $count);
+        $card = null;
+        return $this->render('deck/draw.html.twig', ['count' => $count, 'card' => $card]);
+    }
+
+    #[Route("/card/deck/draw/", name: "draw_request", methods: ['POST'])]
+    public function draw_request(Request $request): Response
     {
-        return $this->render('deck/draw.html.twig');
+        $session = $request->getSession();
+        if ($session->has('deck')) {
+            $deck = new Deck($session->get('deck'));
+            $card = array_pop($deck->deck);
+            $session->set('deck', $deck->deck);
+            $count = count($deck->deck);
+        }
+        return $this->render('deck/draw.html.twig', ['card' => $card, 'count' => $count]);
     }
 
     #[Route("/card/deck/draw/:number", name: "draw_multible")]
