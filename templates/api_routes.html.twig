@@ -9,10 +9,16 @@
         <th>Route</th>
         <th>Beskrivning</th>
     </tr>
-    {% for route, description in routes %}
+    {% for route, data in routes %}
     <tr>
-        <td><a href="{{ path(route) }}">{{ route }}</a></td>
-        <td>{{ description }}</td>
+        <td>
+            {% if data.optionalArgs is defined %}
+                <a href="{{ url(route, data.optionalArgs) }}">{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}</a>
+            {% else %}
+                <a href="{{ url(route) }}">{{ route }}</a>
+            {% endif %}
+        </td>
+        <td>{{ data.description }}</td>
     </tr>
     {% endfor %}
 </table>
