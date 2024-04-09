@@ -60,4 +60,13 @@ class Deck extends Card
     {
         return shuffle($this->deck);
     }
+
+    function draw_cards(int $amount)
+    {
+        $cards = [];
+        for ($i = 0; $i < $amount; $i++) {
+            $cards[] = array_pop($this->deck);
+        }
+        return $cards;
+    }
 }
