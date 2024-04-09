@@ -7,9 +7,11 @@
 
 <h1>Kort kvar: {{ count }}</h1>
 
-{% if card != null %}
+{% if cards != null %}
 <div class="card-container">
+{% for card in cards %}
     <div class="card">{{ card|raw }}</div>
+{% endfor %}
 </div>
 {% endif %}
 
