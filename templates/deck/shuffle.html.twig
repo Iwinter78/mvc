@@ -4,9 +4,11 @@
 
 {% block body %}
 <h1>Deck Shuffled</h1>
-<div class="card-container">
-    {% for cards in deck %}
-        <div class="card">{{ cards|raw }}</div>
-    {% endfor %}
-</div>
+{% if deck %}
+    <div class="card-container">
+        {% for card in deck %}
+        <div class="card">{{ card|raw }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}
