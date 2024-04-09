@@ -4,14 +4,24 @@ namespace App\Models;
 
 class Deck extends Card
 {
-    function __construct()
+    function __construct($deckArray = [])
     {
         parent::__construct();
         $this->deck = [];
+        if (!empty($deckArray)) {
+            $this->create_deck($deckArray);
+        } else {
+            $this->create_deck();
+        }
     }
 
-    function create_deck()
+    function create_deck($deckArray = [])
     {
+        if (!empty($deckArray)) {
+            $this->deck = $deckArray;
+            return $this->deck;
+        }
+
         $redCards = [];
         $blackCards = [];
     
@@ -49,16 +59,5 @@ class Deck extends Card
     function shuffle_deck()
     {
         return shuffle($this->deck);
-    }
-
-    function draw_card()
-    {
-        $cards_left = count($this->deck);
-        if ($cards_left > 0) {
-            $card = array_pop($this->deck);
-            return $card;
-        } else {
-            return 'Inga kort kvar i högen.';
-        }
     }
 }
