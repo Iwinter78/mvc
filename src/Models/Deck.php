@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Deck extends Card
 {
-    function __construct($deckArray = [])
+    public function __construct($deckArray = [])
     {
         parent::__construct();
         $this->deck = [];
@@ -15,7 +15,7 @@ class Deck extends Card
         }
     }
 
-    function create_deck($deckArray = [])
+    public function create_deck($deckArray = [])
     {
         if (!empty($deckArray)) {
             $this->deck = $deckArray;
@@ -24,7 +24,7 @@ class Deck extends Card
 
         $redCards = [];
         $blackCards = [];
-    
+
         foreach ($this->suits as $suit) {
             foreach ($this->values as $value) {
                 $suitClass = '';
@@ -43,7 +43,7 @@ class Deck extends Card
                         break;
                 }
                 $card = '<p class="'. $suitClass . '">' . $value . '</p>' . '<span class="' . $suitClass . '">' . $suit . '</span>';
-    
+
                 if ($suitClass == 'hearts' || $suitClass == 'diamonds') {
                     $redCards[] = $card;
                 } else {
@@ -51,17 +51,17 @@ class Deck extends Card
                 }
             }
         }
-    
+
         $this->deck = array_merge($redCards, $blackCards);
         return $this->deck;
     }
 
-    function shuffle_deck()
+    public function shuffle_deck()
     {
         return shuffle($this->deck);
     }
 
-    function draw_cards(int $amount)
+    public function draw_cards(int $amount)
     {
         $cards = [];
         for ($i = 0; $i < $amount; $i++) {

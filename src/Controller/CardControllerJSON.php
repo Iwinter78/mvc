@@ -13,7 +13,7 @@ use App\Models\Deck;
 class CardControllerJSON extends AbstractController
 {
     #[Route("/api/deck", methods: ['GET'])]
-    public function api_deck(): JsonResponse 
+    public function api_deck(): JsonResponse
     {
         $deck = new Deck();
         $deck->create_deck();

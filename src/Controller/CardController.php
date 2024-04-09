@@ -41,7 +41,7 @@ class CardController extends AbstractController
 
     #[Route("/card/deck/draw", name: "draw")]
     public function draw(Request $request): Response
-    {   
+    {
         $session = $request->getSession();
         if (!$session->has('deck')) {
             $deck = new Deck();
