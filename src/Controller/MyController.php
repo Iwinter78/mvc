@@ -82,7 +82,15 @@ class MyController extends AbstractController
     public function api_routes(): Response
     {
         $avalaible_routes = [
-            "/api/quote" => "Genererar ett random citat"
+            "/api/quote" => ["description" => "Genererar ett random citat"],
+            "/api/deck" => ["description" => "Genererar en kortlek"],
+            "/api/deck/shuffle" => ["description" => "Blandar kortleken samt sparar den i en session"],
+            "/api/deck/draw" => ["description" => "Drar ett kort från kortleken [POST]"],
+            "api_deck_draw_amount" => [
+                "description" => "Drar ett antal kort från kortleken [POST]. Standartvärdet vid tryck av länk är 5 kort.",
+                "optionalArgs" => ["amount" => 5],
+                "optionalRouteName" => "/api/deck/draw/{amount}"
+            ],
         ];
         return $this->render('api_routes.html.twig', ["routes" => $avalaible_routes]);
     }
