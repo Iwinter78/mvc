@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-class Deck
+class Deck extends Card
 {
     function __construct()
     {
+        parent::__construct();
         $this->deck = [];
-        $this->suits = ['♠', '♣', '♥', '♦'];
-        $this->values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-        $this->create_deck();
     }
 
     function create_deck()
