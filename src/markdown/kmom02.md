@@ -1,5 +1,5 @@
-Kmom02
-===============
+<h1 id="kmom02">Kmom02</h1>
+
 Förklara kort de objektorienterade konstruktionerna arv, komposition, interface och trait och hur de används i PHP.
 --------------------------------
 Arv fungerar lite så som det låter. När man ärver från en klass så tar man egenskaper från oftast en huvudklass och använder i en annan klass. Detta förutsatt att man inte har några properties som säger att klassen inte får lov att ärva egenskaperna. Komposition i ett klassammanhang är när det finns ett slags form av sammanhang i mellan iallafall två klasser eller flera. Just detta konceptet är uppbyggt på ett "har" förhållande. Så om vi har en klass som heter bil och en klass som heter hjul så i detta fallet har bilen ett hjul. Därav i detta fallet så har klasserna en komposition mellan varandra.
