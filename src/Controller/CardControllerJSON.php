@@ -17,8 +17,9 @@ class CardControllerJSON extends AbstractController
     {
         $deck = new Deck();
         $deck->create_deck();
+        $strippedData = $deck->to_raw_data($deck->deck);
 
-        return new JsonResponse($deck->deck);
+        return new JsonResponse($strippedData);
     }
 
     #[Route("/api/deck/shuffle", name: "/api/deck/shuffle", methods: ['POST'])]
@@ -28,9 +29,10 @@ class CardControllerJSON extends AbstractController
         $deck = new Deck();
         $deck->create_deck();
         $deck->shuffle_deck();
-        $session->set('deck', $deck->deck);
+        $strippedData = $deck->to_raw_data($deck->deck);
+        $session->set('deck', $strippedData);
 
-        return new JsonResponse($deck->deck);
+        return new JsonResponse($strippedData);
     }
 
     #[Route("/api/deck/draw", name:"/api/deck/draw", methods: ['POST'])]
@@ -44,10 +46,11 @@ class CardControllerJSON extends AbstractController
 
         if ($count > 0) {
             $cards = $deck->draw_cards(1);
-            $session->set('deck', $deck->deck);
+            $session->set('deck', $deck->to_raw_data($deck->deck));
+            $session->set('count', $count - 1);
         }
 
-        return new JsonResponse($cards);
+        return new JsonResponse(['card' => $deck->deck[0], 'count' => $count]);
     }
 
     #[Route("/api/deck/draw/{amount}", name: "api_deck_draw_amount", methods: ['POST'])]
@@ -61,9 +64,12 @@ class CardControllerJSON extends AbstractController
 
         if ($count > 0) {
             $cards = $deck->draw_cards($amount);
-            $session->set('deck', $deck->deck);
+            $session->set('deck', $deck->to_raw_data($deck->deck));
+            $countAfterDraw = count($deck->deck);
+            $session->set('count', $countAfterDraw);
+            $currentCount = $session->get('count');
         }
 
-        return new JsonResponse($cards);
+        return new JsonResponse(['cards' => $cards, 'count' => $currentCount]);
     }
 }
