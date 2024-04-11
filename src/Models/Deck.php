@@ -61,11 +61,20 @@ class Deck extends Card
         return shuffle($this->deck);
     }
 
+    public function to_raw_data($data)
+    {
+        $raw_data = [];
+        foreach ($data as $card) {
+            $raw_data[] = strip_tags($card);
+        }
+        return $raw_data;
+    }
+
     public function draw_cards(int $amount)
     {
         $cards = [];
         for ($i = 0; $i < $amount; $i++) {
-            $cards[] = array_pop($this->deck);
+            $cards[] = array_shift($this->deck);
         }
         return $cards;
     }
