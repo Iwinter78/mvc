@@ -10,4 +10,15 @@
         <li><a href="{{ path('draw') }}">Dra ett kort</a></li>
     </ul>
 </div>
+<br>
+<section class="card-explanation">
+<img src="{{ asset('img/card.png' )}}" alt="Bild på UML diagram">
+    <p>
+        Jag har valt att dela upp kortleket i två olika klasser, Card och Deck.
+        I Card så har jag enbart en constructor innehåller alla värden på kan finnas på ett kort, samt klädslen på kortet.
+        I Deck som är en underklass till Card skapar jag själva kortleken och det är även i den klassen jag kan manipulera korten.
+        Deck kan även ta emot en kortlek i sin constructor där man kan skicka in en redan existerade kortlek oavsätt i vilket stadie kortleken är i.
+        Vilket betyder att kortleken behöver inte vara komplett för att man ska kunna skicka in den in i Deck klassen.
+    </p>
+</section>
 {% endblock %}
