@@ -1,0 +1,19 @@
+Kmom02
+===============
+Förklara kort de objektorienterade konstruktionerna arv, komposition, interface och trait och hur de används i PHP.
+--------------------------------
+Arv fungerar lite så som det låter. När man ärver från en klass så tar man egenskaper från oftast en huvudklass och använder i en annan klass. Detta förutsatt att man inte har några properties som säger att klassen inte får lov att ärva egenskaperna. Komposition i ett klassammanhang är när det finns ett slags form av sammanhang i mellan iallafall två klasser eller flera. Just detta konceptet är uppbyggt på ett "har" förhållande. Så om vi har en klass som heter bil och en klass som heter hjul så i detta fallet har bilen ett hjul. Därav i detta fallet så har klasserna en komposition mellan varandra.
+
+Ett trait är en metod som kan leva i flera klasser samtidigt istället för bara i en underklass. Vilket gör det möjligt att kunna använda methoden flera gånger på olika stället. Anledningen till detta är för att kunna uppmuntra till till att skapa både kod och metoder som går att använda till mer än ett syfte. Ett interface är en metod som kan användas när en klass kommer ska utföra samma sak hela tiden men att man möjligtvis vill göra det på olika sätt och inte på ett satt sätt hela tiden. Låt säg att du vill använda en funktion men du vill att den ska skicka tillbaka olika saker varje gång beroende på vilken klass den skickar iväg ifrån. Då kan man använda ett interface som kan definera själva "grunden" till funktionen fär man sedan kan lägga till kod i klassen som den ska användas i.
+
+Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din koden och dina klasser?
+-------------------------------------
+I min impelmetation av uppgiften så har jag en huvudklass som som fungerar som håller innehåller den infomartionen som krävs för att kunna skapa alla kort. Sedan så använder jag mig av annan klass som ärver från en huvudklass där jag sedan skapar alla kort med hjälp av olika metoder. Metoderna använder jag i routen där jag sedan sparar kortleken en session som jag sedan kan ändra på. Detta genom att jag har lagt till stöd i Deck klassen där jag kan bygga upp kortleken exakt som den är inuti objektet och sedan lägga till det i sessionen på nytt. För att lösa resten av uppgiften så satte jag upp både template filer och routes som behövdes för att klara uppgiften. Det som skulle kunna förbättras är möjligtvis att kortleken är mer uppdelad exempelvis att alla klädda kort är i en sperarat klass, klöver är i en egen osv. Detta med anledningen till att flödet blir ännu mer kontrollerat. I det stora hela så är jag nöjd med så som jag har det nu. Men det är öppet för förändringar ifall det så skulle krävas det.
+
+Vilka är dina reflektioner så här långt med att jobb i Symfony med applikationskod enligt MVC?
+--------------------------------------
+Än sålänge så tycker jag att det har gått ganska så bra med att jobba enligt både MVC och Symfony. Tycker att det är fortfarande lite rörigt att sätta in sig lite hur man ska strukturera upp allt på ett snyggt. Men förhoppningsvis så ju mer jag jobbar med det ju lättare kommer det att bli.
+
+Vilken är din TIL för detta kmom?
+---------------------------------
+Mitt TIL för detta kursmomentet är traits och interface! Någonting som förhoppningsvis kommer att användas under kursens gång då de verkar vara intressant sätt att använda sig av metoder är mer generella åt flera klasser. Får intrycket att det är lite som att bygga en ram runt de man vill att den ska göra på en ungefär för att sedan anpassa det till det den faktiskt ska göra.
