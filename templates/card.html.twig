@@ -14,11 +14,11 @@
 <section class="card-explanation">
 <img src="{{ asset('img/card.png' )}}" alt="Bild på UML diagram">
     <p>
-        Jag har valt att dela upp kortleket i två olika klasser, Card och Deck.
-        I Card så har jag enbart en constructor innehåller alla värden på kan finnas på ett kort, samt klädslen på kortet.
-        I Deck som är en underklass till Card skapar jag själva kortleken och det är även i den klassen jag kan manipulera korten.
-        Deck kan även ta emot en kortlek i sin constructor där man kan skicka in en redan existerade kortlek oavsätt i vilket stadie kortleken är i.
-        Vilket betyder att kortleken behöver inte vara komplett för att man ska kunna skicka in den in i Deck klassen.
+        Kortleken är uppdelat i tre klasser Card, BaseDeck och Deck. Card klassen använder jag mig av för att skapa strukturen för ett kort.
+        Delvis att att ett kort innehåller ett värde och en färg. I BaseDeck klassen så skapar jag själva kortleken och använder mig av Card klassen för att skapa varje kort för sig som jag sedan lägger i en lista.
+        Då jag använder mig av Card klassen för att skapa ett kort i BaseDeck klassen så bildar jag en komposition mellan klasserna.
+        Klassen Deck är en underklass till BaseDeck där jag hämtar alla properties från BaseDeck. I Deck klassen är det även där jag skapar metoder för att ändra på kortleken.
+        Kortleken hämtas från BaseDeck och därmed så ärver Deck från BaseDeck. Dock så skapas inte kortleken för att methoden createDeck kallas.
     </p>
 </section>
 {% endblock %}
