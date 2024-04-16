@@ -40,14 +40,14 @@ class CardControllerJSON extends AbstractController
     {
         $session = $request->getSession();
         $sessionDeck = $session->get('deck');
-    
+
         if (!is_array($sessionDeck)) {
             throw new \Exception('Datan i sessionen är inte en array.');
         }
-    
+
         $deck = new Deck();
         $deck->createDeck($sessionDeck);
-        
+
         $count = count($deck->getDeck());
         $session->set('count', $count);
 
@@ -65,11 +65,11 @@ class CardControllerJSON extends AbstractController
     {
         $session = $request->getSession();
         $sessionDeck = $session->get('deck');
-    
+
         if (!is_array($sessionDeck)) {
             throw new \Exception('Datan i sessionen är inte en array.');
         }
-    
+
         $deck = new Deck();
         $deck->createDeck($sessionDeck);
         $count = count($deck->getDeck());

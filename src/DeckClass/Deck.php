@@ -20,16 +20,16 @@ class Deck extends BaseDeck
      * @param array<string> $deckArray
      * @return array<string>
      */
-    public function createDeck(array $deckArray = []) : array
+    public function createDeck(array $deckArray = []): array
     {
         if (!empty($deckArray)) {
             $this->deck = $deckArray;
             return $this->deck;
         }
-    
+
         $redCards = [];
         $blackCards = [];
-    
+
         foreach ($this->suits as $suit) {
             foreach ($this->values as $value) {
                 $suitClass = '';
@@ -48,7 +48,7 @@ class Deck extends BaseDeck
                         break;
                 }
                 $card = '<p class="'. $suitClass . '">' . $value . '</p>' . '<span class="' . $suitClass . '">' . $suit . '</span>';
-    
+
                 if ($suitClass == 'hearts' || $suitClass == 'diamonds') {
                     $redCards[] = $card;
                     continue;
@@ -56,7 +56,7 @@ class Deck extends BaseDeck
                 $blackCards[] = $card;
             }
         }
-    
+
         $this->deck = array_merge($redCards, $blackCards);
         return $this->deck;
     }
@@ -85,7 +85,7 @@ class Deck extends BaseDeck
      * @param int $amount
      * @return array<int<0, max>, string|null>
      */
-    public function drawCards(int $amount) : array
+    public function drawCards(int $amount): array
     {
         $cards = [];
         for ($i = 0; $i < $amount; $i++) {
