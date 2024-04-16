@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Models\Deck;
+use App\DeckClass\Deck;
 
 class CardControllerJSON extends AbstractController
 {
@@ -17,7 +17,7 @@ class CardControllerJSON extends AbstractController
     {
         $deck = new Deck();
         $deck->createDeck();
-        $strippedData = $deck->toRawData($deck->deck);
+        $strippedData = $deck->toRawData($deck->getDeck());
 
         return new JsonResponse($strippedData);
     }
@@ -29,7 +29,7 @@ class CardControllerJSON extends AbstractController
         $deck = new Deck();
         $deck->createDeck();
         $deck->shuffleDeck();
-        $strippedData = $deck->toRawData($deck->deck);
+        $strippedData = $deck->toRawData($deck->getDeck());
         $session->set('deck', $strippedData);
 
         return new JsonResponse($strippedData);
@@ -45,23 +45,19 @@ class CardControllerJSON extends AbstractController
             throw new \Exception('Datan i sessionen är inte en array.');
         }
     
-        foreach ($sessionDeck as $item) {
-            if (!is_string($item)) {
-                throw new \Exception('Datan i sessionen innehåller inte bara strängar.');
-            }
-        }
-        $deck = new Deck($sessionDeck);
+        $deck = new Deck();
+        $deck->createDeck($sessionDeck);
         
-        $count = count($deck->deck);
+        $count = count($deck->getDeck());
         $session->set('count', $count);
 
         if ($count > 0) {
             $deck->drawCards(1);
-            $session->set('deck', $deck->toRawData($deck->deck));
+            $session->set('deck', $deck->getDeck());
             $session->set('count', $count - 1);
         }
 
-        return new JsonResponse(['card' => $deck->deck[0], 'count' => $count]);
+        return new JsonResponse(['card' => $deck->getDeck()[0], 'count' => $count]);
     }
 
     #[Route("/api/deck/draw/{amount}", name: "api_deck_draw_amount", methods: ['POST'])]
@@ -71,24 +67,20 @@ class CardControllerJSON extends AbstractController
         $sessionDeck = $session->get('deck');
     
         if (!is_array($sessionDeck)) {
-            throw new \Exception('Datan i sessionen är inte en array:');
+            throw new \Exception('Datan i sessionen är inte en array.');
         }
     
-        foreach ($sessionDeck as $item) {
-            if (!is_string($item)) {
-                throw new \Exception('Datan innehåller inte bara stränger.');
-            }
-        }
-        $deck = new Deck($sessionDeck);
-        $count = count($deck->deck);
+        $deck = new Deck();
+        $deck->createDeck($sessionDeck);
+        $count = count($deck->getDeck());
         $session->set('count', $count);
         $cards = null;
         $currentCount = $session->get('count', 0);
 
         if ($count > 0) {
             $cards = $deck->drawCards($amount);
-            $session->set('deck', $deck->toRawData($deck->deck));
-            $countAfterDraw = count($deck->deck);
+            $session->set('deck', $deck->getDeck());
+            $countAfterDraw = count($deck->getDeck());
             $session->set('count', $countAfterDraw);
             $currentCount = $session->get('count');
         }
