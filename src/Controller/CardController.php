@@ -12,29 +12,33 @@ use App\Models\Deck;
 class CardController extends AbstractController
 {
     #[Route("/card", name: "holder")]
-    public function holder_page(): Response
+    public function holderPage(): Response
     {
         return $this->render('card.html.twig');
     }
 
     #[Route("/card/deck", name: "deck")]
-    public function render_deck(Request $request): Response
+    public function renderDeck(Request $request): Response
     {
         $deck = new Deck();
         $session = $request->getSession();
-        $session->set('deck', $deck->create_deck());
+        $session->set('deck', $deck->createDeck());
         return $this->render('deck/deck.html.twig', ['deck' => $deck->deck]);
     }
 
     #[Route("/card/deck/shuffle", name: "shuffle")]
-    public function shuffle_cards(Request $request): Response
+    public function shuffleCards(Request $request): Response
     {
         $session = $request->getSession();
-        $deck = new Deck($session->get('deck'));
-        if (count($deck->deck) != 52) {
-            $deck->create_deck();
+        $deckArray = $session->get('deck');
+        if (!is_array($deckArray)) {
+            $deckArray = [];
         }
-        $deck->shuffle_deck();
+        $deck = new Deck($deckArray);
+        if (count($deck->deck) != 52) {
+            $deck->createDeck();
+        }
+        $deck->shuffleDeck();
         $session->set('deck', $deck->deck);
         return $this->render('deck/shuffle.html.twig', ['deck' => $deck->deck]);
     }
@@ -43,41 +47,58 @@ class CardController extends AbstractController
     public function draw(Request $request): Response
     {
         $session = $request->getSession();
-        if (!$session->has('deck')) {
-            $deck = new Deck();
-            $createDeck = $deck->create_deck();
-            $shuffleDeck = $deck->shuffle_deck();
-            $session->set('deck', $deck->deck);
+        $deck = $session->get('deck', []);
+
+        if (!$deck) {
+            $deckObj = new Deck();
+            $deck = $deckObj->deck;
+            $session->set('deck', $deck);
         }
-        $count = count($session->get('deck'));
+        $count = is_array($deck) ? count($deck) : 0;
         $session->set('count', $count);
         $cards = null;
         return $this->render('deck/draw.html.twig', ['count' => $count, 'cards' => $cards]);
     }
 
     #[Route("/card/deck/draw/", name: "draw_request", methods: ['POST'])]
-    public function draw_request(Request $request): Response
+    public function drawRequest(Request $request): Response
     {
         $session = $request->getSession();
+        $cards = [];
+        $count = 0;
+
         if ($session->has('deck')) {
-            $deck = new Deck($session->get('deck'));
-            $cards = $deck->draw_cards(1);
+            $deckArray = $session->get('deck');
+            if (!is_array($deckArray)) {
+                $deckArray = [];
+            }
+            $deck = new Deck($deckArray);
+            $cards = $deck->drawCards(1);
             $session->set('deck', $deck->deck);
             $count = count($deck->deck);
         }
+
         return $this->render('deck/draw.html.twig', ['cards' => $cards, 'count' => $count]);
     }
 
     #[Route("/card/deck/draw/{amount}", name: "draw_amount")]
-    public function draw_multible(Request $request, int $amount): Response
+    public function drawMultible(Request $request, int $amount): Response
     {
         $session = $request->getSession();
+        $cards = [];
+        $count = 0;
+
         if ($session->has('deck')) {
-            $deck = new Deck($session->get('deck'));
-            $cards = $deck->draw_cards($amount);
+            $deckArray = $session->get('deck');
+            if (!is_array($deckArray)) {
+                $deckArray = [];
+            }
+            $deck = new Deck($deckArray);
+            $cards = $deck->drawCards($amount);
             $session->set('deck', $deck->deck);
             $count = count($deck->deck);
         }
+
         return $this->render('deck/draw.html.twig', ['cards' => $cards, 'count' => $count]);
     }
 }

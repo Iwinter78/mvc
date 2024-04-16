@@ -3,28 +3,45 @@
 namespace App\Models;
 
 class Deck extends Card
-{
-    public function __construct($deckArray = [])
+{   
+    /**
+     * @var string[]
+     */
+    public array $deck;
+
+    /**
+     * @var string[]
+     */
+    public array $deckArray;
+    
+    /**
+     * @param array<string> $deckArray
+     */
+    public function __construct(array $deckArray = [])
     {
         parent::__construct();
         $this->deck = [];
         if (!empty($deckArray)) {
-            $this->create_deck($deckArray);
-        } else {
-            $this->create_deck();
+            $this->createDeck($deckArray);
+            return;
         }
+        $this->createDeck();
     }
 
-    public function create_deck($deckArray = [])
+    /**
+     * @param array<string> $deckArray
+     * @return array<string>
+     */
+    public function createDeck(array $deckArray = []) : array
     {
         if (!empty($deckArray)) {
             $this->deck = $deckArray;
             return $this->deck;
         }
-
+    
         $redCards = [];
         $blackCards = [];
-
+    
         foreach ($this->suits as $suit) {
             foreach ($this->values as $value) {
                 $suitClass = '';
@@ -43,34 +60,44 @@ class Deck extends Card
                         break;
                 }
                 $card = '<p class="'. $suitClass . '">' . $value . '</p>' . '<span class="' . $suitClass . '">' . $suit . '</span>';
-
+    
                 if ($suitClass == 'hearts' || $suitClass == 'diamonds') {
                     $redCards[] = $card;
-                } else {
-                    $blackCards[] = $card;
+                    continue;
                 }
+                $blackCards[] = $card;
             }
         }
-
+    
         $this->deck = array_merge($redCards, $blackCards);
         return $this->deck;
     }
 
-    public function shuffle_deck()
+    /**
+     * @return bool
+     */
+    public function shuffleDeck(): bool
     {
         return shuffle($this->deck);
     }
-
-    public function to_raw_data($data)
+    /**
+     * @param array<string> $data
+     * @return array<string>
+     */
+    public function toRawData(array $data): array
     {
-        $raw_data = [];
+        $rawData = [];
         foreach ($data as $card) {
-            $raw_data[] = strip_tags($card);
+            $rawData[] = strip_tags($card);
         }
-        return $raw_data;
+        return $rawData;
     }
 
-    public function draw_cards(int $amount)
+    /**
+     * @param int $amount
+     * @return array<int<0, max>, string|null>
+     */
+    public function drawCards(int $amount) : array
     {
         $cards = [];
         for ($i = 0; $i < $amount; $i++) {

@@ -7,15 +7,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Anax\TextFilter\TextFilter;
 
 class MyController extends AbstractController
 {
     #[Route("/", name: "index")]
-    public function start_page(): Response
+    public function startPage(): Response
     {
         $filename = dirname(__DIR__) . "/markdown/index.md";
         $text     = file_get_contents($filename);
-        $filter   = new \Anax\TextFilter\TextFilter();
+        $filter   = new TextFilter();
         $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
         $data = [
             "text" => $parsed->text,
@@ -28,7 +29,7 @@ class MyController extends AbstractController
     {
         $filename = dirname(__DIR__) . "/markdown/about.md";
         $text     = file_get_contents($filename);
-        $filter   = new \Anax\TextFilter\TextFilter();
+        $filter   = new TextFilter();
         $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
         $data = [
             "text" => $parsed->text,
@@ -39,7 +40,7 @@ class MyController extends AbstractController
     #[Route("/report", name: "report")]
     public function report(): Response
     {
-        $names_of_reports = [
+        $namesOfReports = [
             "kmom01",
             "kmom02",
             "kmom03",
@@ -49,24 +50,24 @@ class MyController extends AbstractController
             "kmom10"
         ];
 
-        function parseReports($names_of_reports)
+        function parseReports($namesOfReports)
         {
             $data = [];
-            for ($c = 0; $c < count($names_of_reports); $c++) {
-                $filename = dirname(__DIR__) . "/markdown/" . $names_of_reports[$c] . ".md";
+            for ($c = 0; $c < count($namesOfReports); $c++) {
+                $filename = dirname(__DIR__) . "/markdown/" . $namesOfReports[$c] . ".md";
                 if (!file_exists($filename)) {
                     continue;
                 }
                 $text     = file_get_contents($filename);
-                $filter   = new \Anax\TextFilter\TextFilter();
+                $filter   = new TextFilter();
                 $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
-                $data[$names_of_reports[$c]] = [
+                $data[$namesOfReports[$c]] = [
                     "text" => $parsed->text,
                 ];
             }
             return $data;
         }
-        $data = parseReports($names_of_reports);
+        $data = parseReports($namesOfReports);
         return $this->render('report.html.twig', ["data" => $data]);
     }
 
@@ -79,9 +80,9 @@ class MyController extends AbstractController
     }
 
     #[Route("/api", name: "api")]
-    public function api_routes(): Response
+    public function apiRoutes(): Response
     {
-        $avalaible_routes = [
+        $avalaibleRoutes = [
             "/api/quote" => ["description" => "Genererar ett random citat"],
             "/api/deck" => ["description" => "Genererar en kortlek"],
             "/api/deck/shuffle" => ["description" => "Blandar kortleken samt sparar den i en session"],
@@ -92,18 +93,18 @@ class MyController extends AbstractController
                 "optionalRouteName" => "/api/deck/draw/{amount}"
             ],
         ];
-        return $this->render('api_routes.html.twig', ["routes" => $avalaible_routes]);
+        return $this->render('api_routes.html.twig', ["routes" => $avalaibleRoutes]);
     }
 
     #[Route("/session", name: "all_sessions")]
-    public function all_sessions(Request $request): Response
+    public function allSessions(Request $request): Response
     {
         $session = $request->getSession();
         return $this->render('session.html.twig', ["session" => $session->all()]);
     }
 
     #[Route("/session/delete", name: "delete_session")]
-    public function delete_session(Request $request): Response
+    public function deleteSession(Request $request): Response
     {
         $session = $request->getSession();
         $session->clear();

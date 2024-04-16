@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MyJSONController extends AbstractController
 {
     #[Route("/api/quote", name: "/api/quote")]
-    public function api_quote(): JsonResponse
+    public function apiQuote(): JsonResponse
     {
         $quotes = [
             "There's nobody getting rich writing software that I know of.",
@@ -18,10 +18,10 @@ class MyJSONController extends AbstractController
             "I'll be back"
         ];
 
-        $random_quote = $quotes[array_rand($quotes)];
+        $randomQuote = $quotes[array_rand($quotes)];
         $response = new JsonResponse(
             [
-                "quote" => $random_quote,
+                "quote" => $randomQuote,
                 "date" => date("Y-m-d H:i:s")
             ]
         );

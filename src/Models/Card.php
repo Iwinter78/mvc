@@ -4,6 +4,16 @@ namespace App\Models;
 
 class Card
 {
+    /**
+     * @var string[]
+     */
+    public array $suits;
+
+    /**
+     * @var string[]
+     */
+    public array $values;
+
     public function __construct()
     {
         $this->suits = ['♠', '♣', '♥', '♦'];
