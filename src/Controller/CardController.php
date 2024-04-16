@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Models\Deck;
+use App\DeckClass\Deck;
 
 class CardController extends AbstractController
 {
@@ -23,7 +23,7 @@ class CardController extends AbstractController
         $deck = new Deck();
         $session = $request->getSession();
         $session->set('deck', $deck->createDeck());
-        return $this->render('deck/deck.html.twig', ['deck' => $deck->deck]);
+        return $this->render('deck/deck.html.twig', ['deck' => $session->get('deck')]);
     }
 
     #[Route("/card/deck/shuffle", name: "shuffle")]
@@ -34,13 +34,11 @@ class CardController extends AbstractController
         if (!is_array($deckArray)) {
             $deckArray = [];
         }
-        $deck = new Deck($deckArray);
-        if (count($deck->deck) != 52) {
-            $deck->createDeck();
-        }
+        $deck = new Deck();
+        $deck->createDeck($deckArray);
         $deck->shuffleDeck();
-        $session->set('deck', $deck->deck);
-        return $this->render('deck/shuffle.html.twig', ['deck' => $deck->deck]);
+        $session->set('deck', $deck->getDeck());
+        return $this->render('deck/shuffle.html.twig', ['deck' => $session->get('deck')]);
     }
 
     #[Route("/card/deck/draw", name: "draw")]
@@ -51,7 +49,7 @@ class CardController extends AbstractController
 
         if (!$deck) {
             $deckObj = new Deck();
-            $deck = $deckObj->deck;
+            $deck = $deckObj->getDeck();
             $session->set('deck', $deck);
         }
         $count = is_array($deck) ? count($deck) : 0;
@@ -72,10 +70,11 @@ class CardController extends AbstractController
             if (!is_array($deckArray)) {
                 $deckArray = [];
             }
-            $deck = new Deck($deckArray);
+            $deck = new Deck();
+            $deck->createDeck($deckArray);
             $cards = $deck->drawCards(1);
-            $session->set('deck', $deck->deck);
-            $count = count($deck->deck);
+            $session->set('deck', $deck->getDeck());
+            $count = count($deck->getDeck());
         }
 
         return $this->render('deck/draw.html.twig', ['cards' => $cards, 'count' => $count]);
@@ -93,10 +92,11 @@ class CardController extends AbstractController
             if (!is_array($deckArray)) {
                 $deckArray = [];
             }
-            $deck = new Deck($deckArray);
+            $deck = new Deck();
+            $deck->createDeck($deckArray);
             $cards = $deck->drawCards($amount);
-            $session->set('deck', $deck->deck);
-            $count = count($deck->deck);
+            $session->set('deck', $deck->getDeck());
+            $count = count($deck->getDeck());
         }
 
         return $this->render('deck/draw.html.twig', ['cards' => $cards, 'count' => $count]);
