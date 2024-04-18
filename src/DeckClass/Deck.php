@@ -4,8 +4,19 @@ namespace App\DeckClass;
 
 class Deck extends BaseDeck
 {
+    /**
+     * @var array<string>
+     */
     public array $deckArray;
 
+    /**
+     * @var array<string>
+     */
+    public array $deck;
+
+    /**
+     * @param array<string> $deckArray
+     */
     public function __construct(array $deckArray = [])
     {
         parent::__construct();
@@ -14,6 +25,49 @@ class Deck extends BaseDeck
             return;
         }
         $this->createDeck();
+    }
+
+    /**
+     * @param string $suit
+     * @return string
+     */
+
+    private function getSuit(string $suit): string
+    {
+        $suitClass = '';
+        switch ($suit) {
+            case '♠':
+                $suitClass = 'spades';
+                break;
+            case '♣':
+                $suitClass = 'clubs';
+                break;
+            case '♥':
+                $suitClass = 'hearts';
+                break;
+            case '♦':
+                $suitClass = 'diamonds';
+                break;
+        }
+        return $suitClass;
+    }
+
+    /**
+     * @param string $suitClass
+     * @param string $value
+     * @param string $suit
+     * @param array<string> $redCards
+     * @param array<string> $blackCards
+     */
+    private function assignCard(string $suitClass, string $value, string $suit, array &$redCards, array &$blackCards): void
+    {
+        $card = '<p class="'. $suitClass . '">' . $value . '</p>' . '<span class="' . $suitClass . '">' . $suit . '</span>';
+
+        if ($suitClass == 'hearts' || $suitClass == 'diamonds') {
+            $redCards[] = $card;
+            return;
+        }
+        $blackCards[] = $card;
     }
 
     /**
@@ -32,28 +86,8 @@ class Deck extends BaseDeck
 
         foreach ($this->suits as $suit) {
             foreach ($this->values as $value) {
-                $suitClass = '';
-                switch ($suit) {
-                    case '♠':
-                        $suitClass = 'spades';
-                        break;
-                    case '♣':
-                        $suitClass = 'clubs';
-                        break;
-                    case '♥':
-                        $suitClass = 'hearts';
-                        break;
-                    case '♦':
-                        $suitClass = 'diamonds';
-                        break;
-                }
-                $card = '<p class="'. $suitClass . '">' . $value . '</p>' . '<span class="' . $suitClass . '">' . $suit . '</span>';
-
-                if ($suitClass == 'hearts' || $suitClass == 'diamonds') {
-                    $redCards[] = $card;
-                    continue;
-                }
-                $blackCards[] = $card;
+                $suitClass = $this->getSuit($suit);
+                $this->assignCard($suitClass, $value, $suit, $redCards, $blackCards);
             }
         }
 
@@ -94,11 +128,17 @@ class Deck extends BaseDeck
         return $cards;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getDeck(): array
     {
         return $this->deck;
     }
 
+    /**
+     * @param array<string> $deckArray
+     */
     public function setDeck(array $deckArray): void
     {
         $this->deck = $deckArray;
