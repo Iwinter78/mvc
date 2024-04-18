@@ -12,10 +12,20 @@
     {% for route, data in routes %}
     <tr>
         <td>
-            {% if data.optionalArgs is defined %}
-                <a href="{{ url(route, data.optionalArgs) }}">{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}</a>
+            {% if data.isPost|default(false) %}
+                {% if data.optionalArgs is defined %}
+                    <form action="" method="POST">
+                        <input type="submit" name="drawCard" value="{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}"
+                        onClick="this.form.action='{{ url(route, data.optionalArgs) }}';">
+                    </form>
+                {% else %}
+                    <form action="" method="POST">
+                        <input type="submit" name="drawCard" value="{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}"
+                        onClick="this.form.action='{{ url(route) }}';">
+                    </form>
+                {% endif %}
             {% else %}
-                <a href="{{ url(route) }}">{{ route }}</a>
+                <a href="{{ url(route) }}">{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}</a>
             {% endif %}
         </td>
         <td>{{ data.description }}</td>
