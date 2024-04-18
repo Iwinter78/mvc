@@ -13,11 +13,13 @@ use App\DeckClass\Deck;
 class CardControllerJSON extends AbstractController
 {
     #[Route("/api/deck", name: "/api/deck", methods: ['GET'])]
-    public function apiDeck(): JsonResponse
+    public function apiDeck(Request $request): JsonResponse
     {
+        $session = $request->getSession();
         $deck = new Deck();
         $deck->createDeck();
         $strippedData = $deck->toRawData($deck->getDeck());
+        $session->set('deck', $strippedData);
 
         return new JsonResponse($strippedData);
     }
