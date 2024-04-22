@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dokumentation{% endblock %}
+
+{% block body %}
+<div class="center-container">
+    <img src="{{ asset('img/blackjack.png' )}}" alt="Flödesschema">
+</div>
+<section class="pseudo-code">
+    {{ text|raw }}
+</section>
+{% endblock %}
