@@ -28,8 +28,3 @@
 .hearts, .diamonds {
     color: var(--red);
 }
-
-.card-row {
-    display: flex;
-    flex-direction: row;
-}
