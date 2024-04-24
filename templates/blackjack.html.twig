@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Spela BlackJack{% endblock %}
+
+{% block body %}
+<div class="center-container">
+    Bankens hand:
+    <div class="card-row">
+    {% for card in dealer.getHand %}
+        <div class="card">{{ card|raw }}</div>
+    {% endfor %}
+    </div>
+
+    Bankens poäng: {{ dealerScore }}
+
+    Spelarens hand:
+    <div class="card-row">
+    {% for card in player.getHand %}
+        <div class="card">{{ card|raw }}</div>
+    {% endfor %}
+    </div>
+
+    Antal poäng: {{ playerScore }}
+    <form action="" method="POST">
+        <input type="submit" name="blackjackHit" value="Hit"
+        onClick="this.form.action='{{ path('blackjack_hit') }}';">
+    </form>
+    <form action="" method="POST">
+        <input type="submit" name="blackjackStand" value="Stand"
+        onClick="this.form.action='{{ path('blackjack_stand') }}';">
+    </form>
+</div>
+{% endblock %}
