@@ -55,39 +55,82 @@ class GameController extends AbstractController {
         return $this->render('blackjack.html.twig', $data);
     }
 
-    #[Route(name: "blackjack_hit")]
+    #[Route("/game/blackjack/hit", name: "blackjack_hit", methods: ['POST'])]
     public function blackjackHit(Request $request, SessionInterface $session): Response
     {
         $session->set('hit', true);
         $data = [];
         if (gettype($session->get('hit') == 'boolean')) {
-            $blackjack = new BlackJack();
+            $blackjack = $session->get('blackjack');
+            $blackjack->dealCard();
+
+            $session->set('player', $blackjack->getPlayer());
+            $session->set('dealer', $blackjack->getDealer());
+
             $player = $session->get('player');
             $dealer = $session->get('dealer');
-            $blackjack->playersTurn();
+            $playerScore = $blackjack->calculateScore($player->getHand());
+            $dealerScore = $blackjack->calculateScore($dealer->getHand());
+
+            if ($playerScore === 21 ) {
+                $session->set('result', $blackjack->compareResults());
+            }
+
             $data = [
                 "player" => $player,
                 "dealer" => $dealer,
+                "playerScore" => $playerScore,
+                "dealerScore" => $dealerScore,
             ];
         }
-        return $this->redirectToRoute('blackjack', $data);
+        return $this->render('blackjack.html.twig', $data);
     }
 
-    #[Route(name: "blackjack_stand")]
+    #[Route("/game/blackjack/stand", name: "blackjack_stand", methods: ['POST'])]
     public function blackjackStand(Request $request, SessionInterface $session): Response
     {
         $session->set('stand', true);
         $data = [];
         if (gettype($session->get('stand') == 'boolean')) {
-            $blackjack = new BlackJack();
+            $blackjack = $session->get('blackjack');
+            $blackjack->stand();
+
+            $session->set('player', $blackjack->getPlayer());
+            $session->set('dealer', $blackjack->getDealer());
+
             $player = $session->get('player');
-            $dealer = $session->get('dealer');;
-            $blackjack->dealersTurn();
+            $dealer = $session->get('dealer');
+            $playerScore = $blackjack->calculateScore($player->getHand());
+            $dealerScore = $blackjack->calculateScore($dealer->getHand());
+            $result = $blackjack->compareResults();
+            $session->set('result', $result);
+
             $data = [
                 "player" => $player,
                 "dealer" => $dealer,
+                "playerScore" => $playerScore,
+                "dealerScore" => $dealerScore,
             ];
         }
-        return $this->redirectToRoute('blackjack', $data);
+        return $this->render('blackjack.html.twig', $data);
+    }
+
+    #[Route("/game/blackjack/reset", name: "blackjack_reset", methods: ['POST'])]
+    public function blackjackReset(Request $request, SessionInterface $session): Response
+    {
+        $sessionsToUnset = [
+            'blackjack',
+            'player',
+            'dealer',
+            'stand', 
+            'hit', 
+            'result'
+        ];
+        
+        foreach ($sessionsToUnset as $sessionToUnset) {
+            $session->remove($sessionToUnset);
+        }
+
+        return $this->redirectToRoute('blackjack');
     }
 }
