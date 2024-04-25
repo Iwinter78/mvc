@@ -99,6 +99,9 @@ class MyController extends AbstractController
                 "optionalRouteName" => "/api/deck/draw/{amount}",
                 "isPost" => true,
             ],
+            "/api/game" => [
+                "description" => "Ser nuvarande spel i ett JSON-format"
+            ]
         ];
         return $this->render('api_routes.html.twig', ["routes" => $avalaibleRoutes]);
     }
