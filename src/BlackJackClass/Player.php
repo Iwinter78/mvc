@@ -2,28 +2,34 @@
 
 namespace App\BlackJackClass;
 
-Class Player {
-    private $hand;
-    private $score;
+class Player
+{
+    private array $hand;
+    private int $score;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->hand = [];
         $this->score = 0;
     }
 
-    public function getHand(): array {
+    public function getHand(): array
+    {
         return $this->hand;
     }
 
-    public function setHand($hand): void {
+    public function setHand($hand): void
+    {
         $this->hand = $hand;
     }
 
-    public function getScore(): int {
+    public function getScore(): int
+    {
         return $this->score;
     }
 
-    public function setScore($score): void {
+    public function setScore($score): void
+    {
         $this->score = $score;
     }
 }
