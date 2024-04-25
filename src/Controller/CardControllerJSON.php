@@ -9,6 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\DeckClass\Deck;
+use App\BlackJackClass\BlackJack;
+use App\BlackJackClass\Player;
 
 class CardControllerJSON extends AbstractController
 {
@@ -88,5 +90,20 @@ class CardControllerJSON extends AbstractController
         }
 
         return new JsonResponse(['cards' => $cards, 'count' => $currentCount]);
+    }
+
+    #[Route("/api/game", name: "/api/game", methods: ['GET'])]
+    public function apiActiveGame(SessionInterface $session): JsonResponse
+    {
+        $blackjack = $session->get('blackjack');
+
+        $blackjackArray = [
+            'player' => (array) $blackjack->getPlayer(),
+            'dealer' => (array) $blackjack->getDealer(),
+            'deck' => (array) $blackjack->getDeck(),
+            'secondCardDealer' => $blackjack->getSecondCardDealer(),
+        ];
+
+        return new JsonResponse($blackjackArray);
     }
 }
