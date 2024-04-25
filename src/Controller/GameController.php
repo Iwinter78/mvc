@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,16 +11,17 @@ use Anax\TextFilter\TextFilter;
 use App\BlackJackClass\BlackJack;
 use App\BlackJackClass\Player;
 
-class GameController extends AbstractController {
+class GameController extends AbstractController
+{
     #[Route("/game", name: "game")]
     public function game(): Response
     {
-        return $this->render('game.html.twig');
+        return $this->render('blackjack/game.html.twig');
     }
 
     #[Route("/game/doc", name: "gamedocs")]
     public function gameDocs(): Response
-    {   
+    {
         $filename = dirname(__DIR__) . "/markdown/gamedocs.md";
         $text     = file_get_contents($filename);
         $filter   = new TextFilter();
@@ -27,11 +29,11 @@ class GameController extends AbstractController {
         $data = [
             "text" => $parsed->text,
         ];
-        return $this->render('gamedocs.html.twig', $data);
+        return $this->render('blackjack/gamedocs.html.twig', $data);
     }
 
     #[Route("/blackjack", name: "blackjack")]
-    public function blackjack(Request $request, SessionInterface $session): Response
+    public function blackjack(SessionInterface $session): Response
     {
         $blackjack = $session->get('blackjack');
         if ($blackjack === null) {
@@ -39,24 +41,31 @@ class GameController extends AbstractController {
             $blackjack->startGame();
             $session->set('blackjack', $blackjack);
         }
-        
+
         $session->set('blackjack', $blackjack);
-        $session->set('player', $blackjack->getPlayer());
-        $session->set('dealer', $blackjack->getDealer());
         $session->set('stand', false);
         $session->set('hit', false);
-    
+
+        $player = $blackjack->getPlayer();
+        $dealer = $blackjack->getDealer();
+
+        $playerScore = $blackjack->calculateScore($player->getHand());
+        $dealerScore = $blackjack->calculateScore($dealer->getHand());
+
+        $player->setScore($playerScore);
+        $dealer->setScore($dealerScore);
+
         $data = [
-            "player" => $session->get('player'),
-            "playerScore" => $blackjack->calculateScore($blackjack->getPlayer()->getHand()),
-            "dealer" => $session->get('dealer'),
-            "dealerScore" => $blackjack->calculateScore($blackjack->getDealer()->getHand()),
+            "player" => $player,
+            "playerScore" => $playerScore,
+            "dealer" => $dealer,
+            "dealerScore" => $dealerScore,
         ];
-        return $this->render('blackjack.html.twig', $data);
+        return $this->render('blackjack/blackjack.html.twig', $data);
     }
 
     #[Route("/game/blackjack/hit", name: "blackjack_hit", methods: ['POST'])]
-    public function blackjackHit(Request $request, SessionInterface $session): Response
+    public function blackjackHit(SessionInterface $session): Response
     {
         $session->set('hit', true);
         $data = [];
@@ -64,17 +73,20 @@ class GameController extends AbstractController {
             $blackjack = $session->get('blackjack');
             $blackjack->dealCard();
 
-            $session->set('player', $blackjack->getPlayer());
-            $session->set('dealer', $blackjack->getDealer());
+            $player = $blackjack->getPlayer();
+            $dealer = $blackjack->getDealer();
 
-            $player = $session->get('player');
-            $dealer = $session->get('dealer');
             $playerScore = $blackjack->calculateScore($player->getHand());
             $dealerScore = $blackjack->calculateScore($dealer->getHand());
 
-            if ($playerScore === 21 ) {
+
+            if ($playerScore === 21 || $playerScore > 21) {
+                $blackjack->revealSecondCardDealer();
                 $session->set('result', $blackjack->compareResults());
             }
+
+            $player->setScore($playerScore);
+            $dealer->setScore($dealerScore);
 
             $data = [
                 "player" => $player,
@@ -83,11 +95,11 @@ class GameController extends AbstractController {
                 "dealerScore" => $dealerScore,
             ];
         }
-        return $this->render('blackjack.html.twig', $data);
+        return $this->render('blackjack/blackjack.html.twig', $data);
     }
 
     #[Route("/game/blackjack/stand", name: "blackjack_stand", methods: ['POST'])]
-    public function blackjackStand(Request $request, SessionInterface $session): Response
+    public function blackjackStand(SessionInterface $session): Response
     {
         $session->set('stand', true);
         $data = [];
@@ -95,13 +107,15 @@ class GameController extends AbstractController {
             $blackjack = $session->get('blackjack');
             $blackjack->stand();
 
-            $session->set('player', $blackjack->getPlayer());
-            $session->set('dealer', $blackjack->getDealer());
+            $player = $blackjack->getPlayer();
+            $dealer = $blackjack->getDealer();
 
-            $player = $session->get('player');
-            $dealer = $session->get('dealer');
             $playerScore = $blackjack->calculateScore($player->getHand());
             $dealerScore = $blackjack->calculateScore($dealer->getHand());
+
+            $player->setScore($playerScore);
+            $dealer->setScore($dealerScore);
+
             $result = $blackjack->compareResults();
             $session->set('result', $result);
 
@@ -112,21 +126,21 @@ class GameController extends AbstractController {
                 "dealerScore" => $dealerScore,
             ];
         }
-        return $this->render('blackjack.html.twig', $data);
+        return $this->render('blackjack/blackjack.html.twig', $data);
     }
 
     #[Route("/game/blackjack/reset", name: "blackjack_reset", methods: ['POST'])]
-    public function blackjackReset(Request $request, SessionInterface $session): Response
+    public function blackjackReset(SessionInterface $session): Response
     {
         $sessionsToUnset = [
             'blackjack',
             'player',
             'dealer',
-            'stand', 
-            'hit', 
+            'stand',
+            'hit',
             'result'
         ];
-        
+
         foreach ($sessionsToUnset as $sessionToUnset) {
             $session->remove($sessionToUnset);
         }
