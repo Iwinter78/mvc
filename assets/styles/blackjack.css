@@ -1,0 +1,21 @@
+.card-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card-row > div {
+    margin: 10px;
+}
+
+.blackjack-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.blackjack-options > form {
+    margin: 5px;
+}
