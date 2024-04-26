@@ -45,3 +45,8 @@ Funktionen compareHands {
 }
     
 ```
+
+Vilka klasser behöver jag?
+===========================
+
+Jag behöver iallafall minst 2 st klasser. En klass för bara hur spelet körs som jag kallar för BlackJack. En klass som representerar en spelare behövs också som jag kallar för Player. En Player klass representerar både banken och spelaren då både är iprincip uppbygga detsamma fast men annan logik bakom dem. Men tänker att principen borde vara den samma i uppbyggnaden. Tänker även att BlackJack klassen sköter logiken bakom hela spelet så att klassen blir specialliserad för att enbart kunna köra blackjack med.
