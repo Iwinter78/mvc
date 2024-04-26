@@ -5,11 +5,6 @@ namespace App\BlackJackClass;
 use App\DeckClass\Deck;
 use App\BlackJackClass\Player;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 class BlackJack
 {
     /**
@@ -25,7 +20,7 @@ class BlackJack
      */
     private Deck $deck;
     /**
-     * @var string[] $secondCardDealer
+     * @var array<int, string|null> $secondCardDealer
      */
     private array $secondCardDealer;
 
@@ -51,7 +46,9 @@ class BlackJack
     {
         return $this->deck;
     }
-
+    /**
+     * @return array<int, string|null>
+     */
     public function getSecondCardDealer(): array
     {
         return $this->secondCardDealer;
@@ -65,17 +62,20 @@ class BlackJack
         $this->secondCardDealer = $this->deck->drawCards(1);
     }
 
-    public function calculateScore($hand): int
+    /**
+     * @param array<int, string|null> $hand
+     */
+    public function calculateScore(array $hand): int
     {
         $score = 0;
         $aceCount = 0;
-        $hand = $this->deck->toRawData($hand);
+        $rawHand = $this->deck->toRawData(array_filter($hand));
 
-        foreach ($hand as $card) {
+        foreach ($rawHand as $card) {
             $value = substr($card, 0, 2) == '10' ? '10' : substr($card, 0, 1);
 
             if (is_numeric($value)) {
-                $score += $value;
+                $score += (int)$value;
                 continue;
             }
 
@@ -134,5 +134,6 @@ class BlackJack
         } elseif ($playerScore == $dealerScore) {
             return 'Lika!';
         }
+        return 'Någonting gick fel!';
     }
 }

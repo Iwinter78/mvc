@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +47,7 @@ class CardControllerJSON extends AbstractController
         $sessionDeck = $session->get('deck');
 
         if (!is_array($sessionDeck)) {
-            throw new \Exception('Datan i sessionen är inte en array.');
+            throw new Exception('Datan i sessionen är inte en array.');
         }
 
         $deck = new Deck();
@@ -71,7 +72,7 @@ class CardControllerJSON extends AbstractController
         $sessionDeck = $session->get('deck');
 
         if (!is_array($sessionDeck)) {
-            throw new \Exception('Datan i sessionen är inte en array.');
+            throw new Exception('Datan i sessionen är inte en array.');
         }
 
         $deck = new Deck();
@@ -95,7 +96,8 @@ class CardControllerJSON extends AbstractController
     #[Route("/api/game", name: "/api/game", methods: ['GET'])]
     public function apiActiveGame(SessionInterface $session): JsonResponse
     {
-        $blackjack = $session->get('blackjack');
+        /** @var BlackJack $blackjack */
+        $blackjack = $session->get('blackjack', new BlackJack());
 
         $blackjackArray = [
             'player' => (array) $blackjack->getPlayer(),
