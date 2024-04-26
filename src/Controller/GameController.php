@@ -35,12 +35,10 @@ class GameController extends AbstractController
     #[Route("/blackjack", name: "blackjack")]
     public function blackjack(SessionInterface $session): Response
     {
-        $blackjack = $session->get('blackjack');
-        if ($blackjack === null) {
-            $blackjack = new BlackJack();
-            $blackjack->startGame();
-            $session->set('blackjack', $blackjack);
-        }
+        /** @var BlackJack $blackjack */
+        $blackjack = $session->get('blackjack', new BlackJack());
+        $blackjack->startGame();
+        $session->set('blackjack', $blackjack);
 
         $session->set('blackjack', $blackjack);
         $session->set('stand', false);
@@ -54,6 +52,11 @@ class GameController extends AbstractController
 
         $player->setScore($playerScore);
         $dealer->setScore($dealerScore);
+
+        if ($playerScore === 21) {
+            $blackjack->revealSecondCardDealer();
+            $session->set('result', $blackjack->compareResults());
+        }
 
         $data = [
             "player" => $player,
@@ -70,6 +73,7 @@ class GameController extends AbstractController
         $session->set('hit', true);
         $data = [];
         if (gettype($session->get('hit') == 'boolean')) {
+            /** @var BlackJack $blackjack */
             $blackjack = $session->get('blackjack');
             $blackjack->dealCard();
 
@@ -81,7 +85,7 @@ class GameController extends AbstractController
 
 
             if ($playerScore === 21 || $playerScore > 21) {
-                $blackjack->revealSecondCardDealer();
+                $blackjack->stand();
                 $session->set('result', $blackjack->compareResults());
             }
 
@@ -104,6 +108,7 @@ class GameController extends AbstractController
         $session->set('stand', true);
         $data = [];
         if (gettype($session->get('stand') == 'boolean')) {
+            /** @var BlackJack $blackjack */
             $blackjack = $session->get('blackjack');
             $blackjack->stand();
 
