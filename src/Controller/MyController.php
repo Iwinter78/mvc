@@ -11,6 +11,24 @@ use Anax\TextFilter\TextFilter;
 
 class MyController extends AbstractController
 {
+    public function parseReports($namesOfReports)
+    {
+        $data = [];
+        for ($c = 0; $c < count($namesOfReports); $c++) {
+            $filename = dirname(__DIR__) . "/markdown/" . $namesOfReports[$c] . ".md";
+            if (!file_exists($filename)) {
+                continue;
+            }
+            $text     = file_get_contents($filename);
+            $filter   = new TextFilter();
+            $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
+            $data[$namesOfReports[$c]] = [
+                "text" => $parsed->text,
+            ];
+        }
+        return $data;
+    }
+
     #[Route("/", name: "index")]
     public function startPage(): Response
     {
@@ -50,23 +68,6 @@ class MyController extends AbstractController
             "kmom10"
         ];
 
-        function parseReports($namesOfReports)
-        {
-            $data = [];
-            for ($c = 0; $c < count($namesOfReports); $c++) {
-                $filename = dirname(__DIR__) . "/markdown/" . $namesOfReports[$c] . ".md";
-                if (!file_exists($filename)) {
-                    continue;
-                }
-                $text     = file_get_contents($filename);
-                $filter   = new TextFilter();
-                $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
-                $data[$namesOfReports[$c]] = [
-                    "text" => $parsed->text,
-                ];
-            }
-            return $data;
-        }
         $data = parseReports($namesOfReports);
         return $this->render('report.html.twig', ["data" => $data]);
     }
