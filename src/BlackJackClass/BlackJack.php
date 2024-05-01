@@ -5,6 +5,9 @@ namespace App\BlackJackClass;
 use App\DeckClass\Deck;
 use App\BlackJackClass\Player;
 
+/**
+ * Class controlling the game BlackJack
+ */
 class BlackJack
 {
     /**
@@ -31,22 +34,36 @@ class BlackJack
         $this->deck = new Deck();
         $this->secondCardDealer = [];
     }
-
+    /**
+     * Fetches the player from the class
+     * @return Player
+     */
     public function getPlayer(): Player
     {
         return $this->player;
     }
 
+    /**
+     * Fetches the dealer from the class
+     * @return Player
+     */
     public function getDealer(): Player
     {
         return $this->dealer;
     }
 
+    /**
+     * Fetches the deck from the class
+     * @return Deck
+     */
     public function getDeck(): Deck
     {
         return $this->deck;
     }
+
+
     /**
+     * Gets the second card that the dealer has
      * @return array<int, string|null>
      */
     public function getSecondCardDealer(): array
@@ -54,6 +71,9 @@ class BlackJack
         return $this->secondCardDealer;
     }
 
+    /**
+     * Starts the new round of the game.
+     */
     public function startGame(): void
     {
         $this->deck->shuffleDeck();
@@ -63,6 +83,7 @@ class BlackJack
     }
 
     /**
+     * Calculates the score of a single hand
      * @param array<int, string|null> $hand
      */
     public function calculateScore(array $hand): int
@@ -96,6 +117,9 @@ class BlackJack
         return $score;
     }
 
+    /**
+     * Deals another card to the player
+     */
     public function dealCard(): void
     {
         if ($this->player->getScore() < 21) {
@@ -104,12 +128,18 @@ class BlackJack
         }
     }
 
+    /**
+     * Reveals the second card the dealer has. This by mearging the second card array to dealers current array.
+     */
     public function revealSecondCardDealer(): void
     {
         $this->dealer->setHand(array_merge($this->dealer->getHand(), $this->secondCardDealer));
         $this->dealer->setScore($this->calculateScore($this->dealer->getHand()));
     }
 
+    /**
+     * Makes the dealer stand by drawing cards until it get's 17 or more.
+     */
     public function stand(): void
     {
         $this->revealSecondCardDealer();
@@ -118,7 +148,10 @@ class BlackJack
             $this->dealer->setScore($this->calculateScore($this->dealer->getHand()));
         }
     }
-
+    /**
+     * Compares the results between the dealer and player. Returns a string with the result.
+     * @return string
+     */
     public function compareResults(): string
     {
         $playerScore = $this->player->getScore();
@@ -131,9 +164,7 @@ class BlackJack
             return 'Du vann!';
         } elseif ($playerScore < $dealerScore) {
             return 'Du förlorade!';
-        } elseif ($playerScore == $dealerScore) {
-            return 'Lika!';
         }
-        return 'Någonting gick fel!';
+        return 'Lika!';
     }
 }
