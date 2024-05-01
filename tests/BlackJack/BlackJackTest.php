@@ -11,43 +11,43 @@ use App\BlackJackClass\Player;
  */
 
 class BlackJackTest extends TestCase {
-    public function testCreateBlackJack() {
+    public function testCreateBlackJack(): void {
         $blackjack = new BlackJack();
         $this->assertInstanceOf("\App\BlackJackClass\BlackJack", $blackjack);
     }
 
-    public function testGetPlayerBlackJack() {
+    public function testGetPlayerBlackJack(): void {
         $blackjack = new BlackJack();
         $getPlayer = $blackjack->getPlayer();
         $this->assertInstanceOf("\App\BlackJackClass\Player", $getPlayer);
     }
 
-    public function testGetScorePlayer() {
+    public function testGetScorePlayer(): void {
         $blackjack = new BlackJack();
         $getPlayer = $blackjack->getPlayer();
         $score = $getPlayer->getScore();
         $this->assertIsInt($score);
     }
 
-    public function testGetDealerBlackJack() {
+    public function testGetDealerBlackJack(): void {
         $blackjack = new BlackJack();
         $getDealer = $blackjack->getDealer();
         $this->assertInstanceOf("\App\BlackJackClass\Player", $getDealer);
     }
 
-    public function testGetDeck() {
+    public function testGetDeck(): void {
         $blackjack = new BlackJack();
         $getDeck = $blackjack->getDeck();
         $this->assertInstanceOf("\App\DeckClass\Deck", $getDeck);
     }
 
-    public function testGetSecondCardDealer() {
+    public function testGetSecondCardDealer(): void {
         $blackjack = new BlackJack();
         $getSecondCardDealer = $blackjack->getSecondCardDealer();
         $this->assertIsArray($getSecondCardDealer);
     }
 
-    public function testStartGame() {
+    public function testStartGame(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -56,7 +56,7 @@ class BlackJackTest extends TestCase {
         $this->assertIsArray($getDealer->getHand());
     }
 
-    public function testHitPlayer() {
+    public function testHitPlayer(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -64,7 +64,7 @@ class BlackJackTest extends TestCase {
         $this->assertIsArray($getPlayer->getHand());
     }
 
-    public function testStandDealer() {
+    public function testStandDealer():void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getDealer = $blackjack->getDealer();
@@ -73,14 +73,14 @@ class BlackJackTest extends TestCase {
         $this->assertGreaterThanOrEqual(2, count($getDealer->getHand()));
     }
 
-    public function testRevealSecondCardDealer() {
+    public function testRevealSecondCardDealer(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getSecondCardDealer = $blackjack->getSecondCardDealer();
         $this->assertIsArray($getSecondCardDealer);
     }
 
-    public function testCompareResults() {
+    public function testCompareResults(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -90,7 +90,7 @@ class BlackJackTest extends TestCase {
         $this->assertIsString($result);
     }
 
-    public function testCompareResultsLost() {
+    public function testCompareResultsLost(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -101,7 +101,7 @@ class BlackJackTest extends TestCase {
         $this->assertEquals("Du förlorade!", $result);
     }
     
-    public function testCompareResultsWin() {
+    public function testCompareResultsWin(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -112,7 +112,7 @@ class BlackJackTest extends TestCase {
         $this->assertEquals("Du vann!", $result);
     }
 
-    public function testCompareResultsDraw() {
+    public function testCompareResultsDraw(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -122,7 +122,7 @@ class BlackJackTest extends TestCase {
         $result = $blackjack->compareResults();
         $this->assertEquals("Lika!", $result);}
     
-    public function testCompareResultsDealerBust() {
+    public function testCompareResultsDealerBust(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -133,7 +133,7 @@ class BlackJackTest extends TestCase {
         $this->assertEquals("Banken blev tjock, du vinner!", $result);
     }
 
-    public function compareResultsPlayerLost() {
+    public function compareResultsPlayerLost(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
@@ -144,19 +144,19 @@ class BlackJackTest extends TestCase {
         $this->assertEquals("Du förlorade!", $result);
     }
 
-    public function testCalculateScore() {
+    public function testCalculateScore(): void {
         $blackjack = new BlackJack();
         $score = $blackjack->calculateScore(["A", "K"]);
         $this->assertIsInt($score);
     }
 
-    public function testCalculateScoreWithExtraAce() {
+    public function testCalculateScoreWithExtraAce(): void {
         $blackjack = new BlackJack();
         $score = $blackjack->calculateScore(["A", "A", "K"]);
         $this->assertEquals(12, $score);
     }
 
-    public function testCalculateScoreEmptyArray() {
+    public function testCalculateScoreEmptyArray(): void {
         $blackjack = new BlackJack();
         $score = $blackjack->calculateScore([]);
         $this->assertEquals(0, $score);
