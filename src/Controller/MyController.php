@@ -14,7 +14,8 @@ class MyController extends AbstractController
     public function parseReports($namesOfReports)
     {
         $data = [];
-        for ($c = 0; $c < count($namesOfReports); $c++) {
+        $amountOfReports = count($namesOfReports);
+        for ($c = 0; $c < $amountOfReports; $c++) {
             $filename = dirname(__DIR__) . "/markdown/" . $namesOfReports[$c] . ".md";
             if (!file_exists($filename)) {
                 continue;
@@ -68,7 +69,7 @@ class MyController extends AbstractController
             "kmom10"
         ];
 
-        $data = parseReports($namesOfReports);
+        $data = $this->parseReports($namesOfReports);
         return $this->render('report.html.twig', ["data" => $data]);
     }
 
