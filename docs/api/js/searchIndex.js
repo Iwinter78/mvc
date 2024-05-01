@@ -3,7 +3,7 @@ Search.appendIndex(
                 {
             "fqsen": "\\App\\BlackJackClass\\BlackJack",
             "name": "BlackJack",
-            "summary": "",
+            "summary": "Class\u0020controlling\u0020the\u0020game\u0020BlackJack",
             "url": "classes/App-BlackJackClass-BlackJack.html"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003A__construct\u0028\u0029",
@@ -13,52 +13,52 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AgetPlayer\u0028\u0029",
             "name": "getPlayer",
-            "summary": "",
+            "summary": "Fetches\u0020the\u0020player\u0020from\u0020the\u0020class",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_getPlayer"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AgetDealer\u0028\u0029",
             "name": "getDealer",
-            "summary": "",
+            "summary": "Fetches\u0020the\u0020dealer\u0020from\u0020the\u0020class",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_getDealer"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AgetDeck\u0028\u0029",
             "name": "getDeck",
-            "summary": "",
+            "summary": "Fetches\u0020the\u0020deck\u0020from\u0020the\u0020class",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_getDeck"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AgetSecondCardDealer\u0028\u0029",
             "name": "getSecondCardDealer",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020second\u0020card\u0020that\u0020the\u0020dealer\u0020has",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_getSecondCardDealer"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AstartGame\u0028\u0029",
             "name": "startGame",
-            "summary": "",
+            "summary": "Starts\u0020the\u0020new\u0020round\u0020of\u0020the\u0020game.",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_startGame"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AcalculateScore\u0028\u0029",
             "name": "calculateScore",
-            "summary": "",
+            "summary": "Calculates\u0020the\u0020score\u0020of\u0020a\u0020single\u0020hand",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_calculateScore"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AdealCard\u0028\u0029",
             "name": "dealCard",
-            "summary": "",
+            "summary": "Deals\u0020another\u0020card\u0020to\u0020the\u0020player",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_dealCard"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003ArevealSecondCardDealer\u0028\u0029",
             "name": "revealSecondCardDealer",
-            "summary": "",
+            "summary": "Reveals\u0020the\u0020second\u0020card\u0020the\u0020dealer\u0020has.\u0020This\u0020by\u0020mearging\u0020the\u0020second\u0020card\u0020array\u0020to\u0020dealers\u0020current\u0020array.",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_revealSecondCardDealer"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003Astand\u0028\u0029",
             "name": "stand",
-            "summary": "",
+            "summary": "Makes\u0020the\u0020dealer\u0020stand\u0020by\u0020drawing\u0020cards\u0020until\u0020it\u0020get\u0027s\u002017\u0020or\u0020more.",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_stand"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003AcompareResults\u0028\u0029",
             "name": "compareResults",
-            "summary": "",
+            "summary": "Compares\u0020the\u0020results\u0020between\u0020the\u0020dealer\u0020and\u0020player.\u0020Returns\u0020a\u0020string\u0020with\u0020the\u0020result.",
             "url": "classes/App-BlackJackClass-BlackJack.html#method_compareResults"
         },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack\u003A\u003A\u0024player",
