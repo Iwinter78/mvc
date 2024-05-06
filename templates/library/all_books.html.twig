@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Biblotek - Alla böcker{% endblock %}
+
+{% block body %}
+<section class="book-holder">
+    {% for book in books %}
+    <div class="book-item">
+        <img src="{{ book.getImage }}" alt="{{ book.name }}">
+        <h2 class="book-title"><a href="{{'path()'}}">{{ book.getName }}</a></h2>
+        <p>{{ book.getAuthor }}</p>
+        <p>{{ book.getIsbn }}</p>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
