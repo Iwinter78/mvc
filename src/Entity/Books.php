@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Exception;
 use App\Repository\BooksRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -76,5 +77,29 @@ class Books
         $this->image = $image;
 
         return $this;
+    }
+
+    public function addBook(array $data): void
+    {
+        try {
+            if (isset($data['title'], $data['isbn'], $data['author'], $data['image'])) {
+                $this->setName($data['title']);
+                $this->setIsbn($data['isbn']);
+                $this->setAuthor($data['author']);
+                $this->setImage($data['image']);
+            }
+        } catch (Exception $error) {
+            throw new Exception($error);
+        }
+    }
+
+    public function getAllBooks(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'isbn' => $this->getIsbn(),
+            'author' => $this->getAuthor(),
+            'image' => $this->getImage()
+        ];
     }
 }
