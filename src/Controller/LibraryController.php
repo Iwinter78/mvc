@@ -44,4 +44,11 @@ class LibraryController extends AbstractController
         $books = $bookRepository->findAll();
         return $this->render('library/all_books.html.twig', ['books' => $books]);
     }
+
+    #[Route('/library/showsbook/{name}', name: 'app_library_single_book')]
+    public function showSingleBook($name, BooksRepository $bookRepository): Response
+    {
+        $book = $bookRepository->findOneBy(['name' => $name]);
+        return $this->render('library/single_book.html.twig', ['book' => $book]);
+    }
 }
