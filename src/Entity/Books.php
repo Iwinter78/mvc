@@ -92,14 +92,4 @@ class Books
             throw new Exception($error);
         }
     }
-
-    public function getAllBooks(): array
-    {
-        return [
-            'name' => $this->getName(),
-            'isbn' => $this->getIsbn(),
-            'author' => $this->getAuthor(),
-            'image' => $this->getImage()
-        ];
-    }
 }
