@@ -3,5 +3,10 @@
 {% block title %}Biblotek - Alternativ{% endblock %}
 
 {% block body %}
-
+<section>
+    <ul>
+        <li><a href="{{ path('app_library_books')}}">Lägg till bok</a></li>
+        <li><a href="{{ path('app_library_show_books') }}">Visa alla böcker</a></li>
+    </ul>
+</section>
 {% endblock %}
