@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Biblotek - Lägg till bok{% endblock %}
+
+{% block body %}
+<section>
+    <form action="{{ path('app_library_books_add') }}" method="POST" class="form-holder">
+        <h1>Lägg till bok</h1>
+        <label for="title">Titel</label>
+        <input type="text" name="title" id="title" required>
+        <label for="author">Författare</label>
+        <input type="text" name="author" id="author" required>
+        <label for="isbn">ISBN</label>
+        <input type="number" name="isbn" id="isbn" required>
+        <label for="image">Bild (URL)</label>
+        <input type="text" name="image" id="image" required>
+        <button type="submit">Lägg till bok</button>
+    </form>
+</section>
+{% endblock %}
