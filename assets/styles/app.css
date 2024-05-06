@@ -5,6 +5,7 @@
 @import url(./flashcards.css);
 @import url(./card.css);
 @import url(./blackjack.css);
+@import url(./library.css);
 
 :root {
     --blue: #4be2f2;
