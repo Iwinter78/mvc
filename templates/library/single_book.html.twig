@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Biblotek - {{ book.getName }}{% endblock %}
+
+{% block body %}
+<section class="book-holder">
+    <div class="book-item">
+        <img src="{{ book.getImage }}" alt="{{ book.getName }}">
+        <h2 class="book-title">{{ book.getName }}</h2>
+        <p>{{ book.getAuthor }}</p>
+        <p>{{ book.getIsbn }}</p>
+    </div>
+</section>
+{% endblock %}
