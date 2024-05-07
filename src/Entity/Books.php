@@ -35,7 +35,9 @@ class Books
     {
         return $this->name;
     }
-
+    /**
+     * @param string $name
+     */
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -47,7 +49,9 @@ class Books
     {
         return $this->isbn;
     }
-
+    /**
+     * @param int $isbn
+     */
     public function setIsbn(int $isbn): static
     {
         $this->isbn = $isbn;
@@ -60,6 +64,9 @@ class Books
         return $this->author;
     }
 
+    /**
+     * @param string $author
+     */
     public function setAuthor(string $author): static
     {
         $this->author = $author;
@@ -72,6 +79,9 @@ class Books
         return $this->image;
     }
 
+    /**
+     * @param string|null $image
+     */
     public function setImage(?string $image): static
     {
         $this->image = $image;
@@ -79,6 +89,12 @@ class Books
         return $this;
     }
 
+    /**
+     * Adds a book to the database
+     *
+     * @param array<string, mixed> $data
+     * @return void
+     */
     public function addBook(array $data): void
     {
         try {

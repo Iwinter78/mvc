@@ -46,7 +46,10 @@ class BooksRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-
+    /**
+     * Updates a book in the database
+     * @param array<string, string|int> $data
+     */
     public function updateBook(array $data): void
     {
         $connection = $this->getEntityManager()->getConnection();

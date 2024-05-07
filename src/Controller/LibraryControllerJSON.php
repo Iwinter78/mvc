@@ -34,9 +34,17 @@ class LibraryControllerJSON extends AbstractController
     }
 
     #[Route('api/library/book/{isbn}', name: 'api_library_single_book')]
-    public function showSingleBook($isbn, BooksRepository $bookRepository): Response
+    public function showSingleBook(int $isbn, BooksRepository $bookRepository): Response
     {
         $book = $bookRepository->findOneBy(['isbn' => $isbn]);
+
+        try {
+            if (!$book) {
+                throw new Exception('Boken finns inte!');
+            }
+        } catch (Exception $e) {
+            return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
+        }
 
         $bookArray = [
             'id' => $book->getId(),
