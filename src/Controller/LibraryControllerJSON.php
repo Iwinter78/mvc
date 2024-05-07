@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 use App\Repository\BooksRepository;
 use App\Entity\Books;
 
