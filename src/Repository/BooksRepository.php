@@ -45,4 +45,33 @@ class BooksRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+    public function updateBook(array $data): void
+    {   
+        $connection = $this->getEntityManager()->getConnection();
+    
+        $sqlFindId = "SELECT id FROM books WHERE isbn = :isbn OR name = :name OR author = :author";
+        $stmt = $connection->executeQuery($sqlFindId, [
+            'isbn' => $data['isbn'],
+            'name' => $data['name'],
+            'author' => $data['author']
+        ]);
+        $book = $stmt->fetch();
+    
+        $bookId = $book['id'];
+
+        $sqlUpdate = "
+        UPDATE books SET name = :name,
+        isbn = :isbn, author = :author,
+        image = :image WHERE id = :id
+        ";
+        $connection->executeUpdate($sqlUpdate, [
+            'name' => $data['name'],
+            'isbn' => $data['isbn'],
+            'author' => $data['author'],
+            'image' => $data['image'],
+            'id' => $bookId
+        ]);        
+    }
 }
