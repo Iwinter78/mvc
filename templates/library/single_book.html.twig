@@ -9,6 +9,8 @@
         <h2 class="book-title">{{ book.getName }}</h2>
         <p>{{ book.getAuthor }}</p>
         <p>{{ book.getIsbn }}</p>
+        <a href="{{ path('app_library_edit_book', { 'isbn': book.getIsbn } ) }}">Uppdatera infomartion</a>
+        <a href="{{ path('app_library_delete_book', { 'isbn': book.getIsbn }) }}">Ta bort</a>
     </div>
 </section>
 {% endblock %}
