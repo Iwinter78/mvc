@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Biblotek - Redigera bok{% endblock %}
+
+{% block body %}
+<section class="book-holder">
+    <div class="book-item">
+        <h1>Redigera bok</h1>
+        <form action="{{ path('app_library_edit_book_init', { 'isbn': book.getIsbn }) }}" method="POST">
+            <label for="name">Namn</label>
+            <input type="text" name="name" id="name" value="{{ book.getName }}">
+            <label for="author">Författare</label>
+            <input type="text" name="author" id="author" value="{{ book.getAuthor }}">
+            <label for="isbn">ISBN</label>
+            <input type="text" name="isbn" id="isbn" value="{{ book.getIsbn }}">
+            <label for="image">Bild (URL)</label>
+            <input type="text" name="image" id="image" value="{{ book.getImage }}">
+            <input type="submit" value="Uppdatera">
+        </form>
+    </div>
+</section>
+{% endblock %}
