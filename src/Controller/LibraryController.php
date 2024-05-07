@@ -29,7 +29,6 @@ class LibraryController extends AbstractController
     {
         $book = new Books();
         $data = $request->request->all();
-        print_r($data);
         $book->addBook($data);
 
         $entityManager = $manager->getManager();
@@ -50,5 +49,37 @@ class LibraryController extends AbstractController
     {
         $book = $bookRepository->findOneBy(['name' => $name]);
         return $this->render('library/single_book.html.twig', ['book' => $book]);
+    }
+
+    #[Route('/library/deletebook/{isbn}', name: 'app_library_delete_book')]
+    public function deleteBook($isbn, BooksRepository $bookRepository, ManagerRegistry $manager): Response
+    {
+        $book = $bookRepository->findOneBy(['isbn' => $isbn]);
+        $entityManager = $manager->getManager();
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_library_show_books');
+    }
+
+    #[Route('/library/editbook/{isbn}', name: 'app_library_edit_book')]
+    public function editBook($isbn, BooksRepository $bookRepository): Response
+    {
+        $book = $bookRepository->findOneBy(['isbn' => $isbn]);
+        return $this->render('library/edit_book.html.twig', ['book' => $book]);
+    }
+
+    #[Route('/library/editbook_init/{isbn}', name: 'app_library_edit_book_init', methods: ['POST'])]
+    public function editBookInit($isbn, Request $request, BooksRepository $bookRepository, ManagerRegistry $manager): Response
+    {
+        $book = $bookRepository->findOneBy(['isbn' => $isbn]);
+        $data = $request->request->all();
+        $bookRepository->updateBook($data);
+
+        $entityManager = $manager->getManager();
+        $entityManager->persist($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_library_show_books');
     }
 }
