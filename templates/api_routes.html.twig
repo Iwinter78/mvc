@@ -25,7 +25,11 @@
                     </form>
                 {% endif %}
             {% else %}
-                <a href="{{ url(route) }}">{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}</a>
+                {% if data.optionalArgs is defined %}
+                    <a href="{{ url(route, data.optionalArgs) }}">{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}</a>
+                {% else %}
+                    <a href="{{ url(route) }}">{{ data.optionalRouteName is defined ? data.optionalRouteName : route }}</a>
+                {% endif %}
             {% endif %}
         </td>
         <td>{{ data.description }}</td>
