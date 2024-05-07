@@ -48,9 +48,9 @@ class BooksRepository extends ServiceEntityRepository
 
 
     public function updateBook(array $data): void
-    {   
+    {
         $connection = $this->getEntityManager()->getConnection();
-    
+
         $sqlFindId = "SELECT id FROM books WHERE isbn = :isbn OR name = :name OR author = :author";
         $stmt = $connection->executeQuery($sqlFindId, [
             'isbn' => $data['isbn'],
@@ -58,7 +58,7 @@ class BooksRepository extends ServiceEntityRepository
             'author' => $data['author']
         ]);
         $book = $stmt->fetch();
-    
+
         $bookId = $book['id'];
 
         $sqlUpdate = "
@@ -72,6 +72,6 @@ class BooksRepository extends ServiceEntityRepository
             'author' => $data['author'],
             'image' => $data['image'],
             'id' => $bookId
-        ]);        
+        ]);
     }
 }
