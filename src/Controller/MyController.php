@@ -103,7 +103,16 @@ class MyController extends AbstractController
             ],
             "/api/game" => [
                 "description" => "Ser nuvarande spel i ett JSON-format"
-            ]
+            ],
+            "api_library" => [
+                "description" => "Visar alla böcker i biblioteket",
+                "optionalRouteName" => "/api/library/books"
+            ],
+            "api_library_single_book" => [
+                "description" => "Visar en specifik bok i biblioteket. Default ISBN är 9789179751221",
+                "optionalArgs" => ["isbn" => 9789179751221],
+                "optionalRouteName" => "/api/library/book/{isbn}"
+            ],
         ];
         return $this->render('api_routes.html.twig', ["routes" => $avalaibleRoutes]);
     }
