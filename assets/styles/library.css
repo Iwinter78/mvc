@@ -33,3 +33,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.single-book {
+    margin: 0 auto;
+}
+
+.navigation-library {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.navigation-library ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 10%;
+}
