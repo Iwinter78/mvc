@@ -138,4 +138,17 @@ class MyController extends AbstractController
     {
         return $this->render('card.html.twig');
     }
+
+    #[Route("/metrics", name: "metrics")]
+    public function metrics(): Response
+    {
+        $filename = dirname(__DIR__) . "/markdown/metrics.md";
+        $text     = file_get_contents($filename);
+        $filter   = new TextFilter();
+        $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
+        $data = [
+            "text" => $parsed->text,
+        ];
+        return $this->render('metrics.html.twig', $data);
+    }
 }
