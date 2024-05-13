@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Rapport om metrics{% endblock %}
+
+{% block body %}
+{% for metricName, metricData in data %}
+    {{ metricData.text|raw}}
+{% endfor %}
+{% endblock %}
