@@ -58,8 +58,193 @@
 <div class="row">
     <div class="column">
         <div class="bloc">
-            <h4>Object relations</h4>
-            <div id="chart-relations"></div>
+            <h4>Git history
+                <small>(PHP files only)</small>
+            </h4>
+            <div id="chart-git-history" style="height:200px"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column column-60">
+        <div class="bloc">
+            <h4>Most committed PHP files</h4>
+            <table class="js-sort-table table-small" id="table-commits">
+                <thead>
+                <tr>
+                    <th>File</th>
+                    <th class="js-sort-number">Commits</th>
+                </tr>
+                </thead>
+                <tbody>
+                                    <tr>
+                        <td>src/Controller/LibraryControllerJSON.php</td>
+                        <td>3</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Controller/LibraryController.php</td>
+                        <td>5</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Entity/Books.php</td>
+                        <td>4</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Repository/BooksRepository.php</td>
+                        <td>4</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Controller/MyController.php</td>
+                        <td>12</td>
+                    </tr>
+                                    <tr>
+                        <td>migrations/Version20240503083732.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>tests/BlackJack/BlackJackTest.php</td>
+                        <td>2</td>
+                    </tr>
+                                    <tr>
+                        <td>src/BlackJackClass/BlackJack.php</td>
+                        <td>5</td>
+                    </tr>
+                                    <tr>
+                        <td>tests/Dice/DiceTest.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>src/BlackJackClass/Player.php</td>
+                        <td>3</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Controller/CardControllerJSON.php</td>
+                        <td>10</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Controller/GameController.php</td>
+                        <td>5</td>
+                    </tr>
+                                    <tr>
+                        <td>src/DeckClass/Deck.php</td>
+                        <td>3</td>
+                    </tr>
+                                    <tr>
+                        <td>src/DeckClass/BaseDeck.php</td>
+                        <td>2</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Models/Deck.php</td>
+                        <td>10</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Models/Card.php</td>
+                        <td>5</td>
+                    </tr>
+                                    <tr>
+                        <td>src/DeckClass/Card.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Controller/CardController.php</td>
+                        <td>8</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Controller/MyJSONController.php</td>
+                        <td>4</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Controller/DiceGameController.php</td>
+                        <td>2</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Dice/DiceGraphic.php</td>
+                        <td>2</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Dice/Dice.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>src/Dice/DiceHand.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>{public/config => config}/bundles.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>{public/config => config}/preload.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/importmap.php => importmap.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/{public => }/index.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>{public/src => src}/Kernel.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>{public/tests => tests}/bootstrap.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/config/bundles.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/config/preload.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/importmap.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/public/index.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/src/Kernel.php</td>
+                        <td>1</td>
+                    </tr>
+                                    <tr>
+                        <td>public/tests/bootstrap.php</td>
+                        <td>1</td>
+                    </tr>
+                                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="column">
+        <div class="bloc">
+            <h4>Contributors <small>(PHP only)</small></h4>
+            <table class="js-sort-table table-small" id="table-authors">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="js-sort-number">Commits</th>
+                    <th class="js-sort-number">Additions</th>
+                    <th class="js-sort-number">Removes</th>
+                    <th class="js-sort-number">Files</th>
+                </tr>
+                </thead>
+                <tbody>
+                                    <tr>
+                        <td>Iwinter78</td>
+                        <td>166</td>
+                        <td>2411</td>
+                        <td>551</td>
+                        <td>106</td>
+                    </tr>
+                                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -258,384 +443,182 @@
 
 
 <script>
+    var format = d3.time.format("%Y-%W");
 
+    var margin = {top: 20, right: 0, bottom: 40, left: 40},
+        width = document.getElementById('chart-git-history').offsetWidth - margin.left - margin.right,
+        height = document.getElementById('chart-git-history').offsetHeight - margin.top - margin.bottom;
 
-    var relations = [
+    var x = d3.time.scale()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var z = d3.scale.category20c();
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .ticks(d3.time.month);
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+    var stack = d3.layout.stack()
+        .offset("zero")
+        .values(function (d) {
+            return d.values;
+        })
+        .x(function (d) {
+            return d.date;
+        })
+        .y(function (d) {
+            return d.value;
+        });
+
+    var nest = d3.nest()
+        .key(function (d) {
+            return d.key;
+        });
+
+    var area = d3.svg.area()
+        .interpolate("cardinal")
+        .x(function (d) {
+            return x(d.date);
+        })
+        .y0(function (d) {
+            return y(d.y0);
+        })
+        .y1(function (d) {
+            return y(d.y0 + d.y);
+        });
+
+    var svg = d3.select("#chart-git-history").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var data = [
     {
-        "name": "\\App\\Entity\\Books",
-        "size": 3000,
-        "relations": []
+        "date": "2024-13",
+        "key": "Additions",
+        "value": 117
     },
     {
-        "name": "\\Exception",
-        "size": 3000,
-        "relations": []
+        "date": "2024-13",
+        "key": "Removes",
+        "value": 0
     },
     {
-        "name": "\\App\\Repository\\BooksRepository",
-        "size": 3000,
-        "relations": []
+        "date": "2024-14",
+        "key": "Additions",
+        "value": 425
     },
     {
-        "name": "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
-        "size": 3000,
-        "relations": []
+        "date": "2024-14",
+        "key": "Removes",
+        "value": 9
     },
     {
-        "name": "\\Doctrine\\Persistence\\ManagerRegistry",
-        "size": 3000,
-        "relations": []
+        "date": "2024-15",
+        "key": "Additions",
+        "value": 206
     },
     {
-        "name": "\\App\\Controller\\DiceGameController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\App\\Dice\\Dice",
-            "\\Exception",
-            "\\App\\Dice\\DiceGraphic",
-            "\\App\\Dice\\DiceHand",
-            "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface"
-        ]
+        "date": "2024-15",
+        "key": "Removes",
+        "value": 74
     },
     {
-        "name": "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-        "size": 3000,
-        "relations": []
+        "date": "2024-16",
+        "key": "Additions",
+        "value": 418
     },
     {
-        "name": "\\Symfony\\Component\\HttpFoundation\\Response",
-        "size": 3000,
-        "relations": []
+        "date": "2024-16",
+        "key": "Removes",
+        "value": 276
     },
     {
-        "name": "\\App\\Dice\\Dice",
-        "size": 3000,
-        "relations": []
+        "date": "2024-17",
+        "key": "Additions",
+        "value": 489
     },
     {
-        "name": "\\App\\Dice\\DiceGraphic",
-        "size": 3000,
-        "relations": [
-            "\\App\\Dice\\Dice"
-        ]
+        "date": "2024-17",
+        "key": "Removes",
+        "value": 123
     },
     {
-        "name": "\\App\\Dice\\DiceHand",
-        "size": 3000,
-        "relations": [
-            "\\App\\Dice\\Dice"
-        ]
+        "date": "2024-18",
+        "key": "Additions",
+        "value": 451
     },
     {
-        "name": "\\Symfony\\Component\\HttpFoundation\\Request",
-        "size": 3000,
-        "relations": []
+        "date": "2024-18",
+        "key": "Removes",
+        "value": 43
     },
     {
-        "name": "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-        "size": 3000,
-        "relations": []
+        "date": "2024-19",
+        "key": "Additions",
+        "value": 224
     },
     {
-        "name": "\\App\\Controller\\LibraryController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\Doctrine\\Persistence\\ManagerRegistry",
-            "\\App\\Entity\\Books",
-            "\\App\\Repository\\BooksRepository"
-        ]
+        "date": "2024-19",
+        "key": "Removes",
+        "value": 26
     },
     {
-        "name": "\\App\\Controller\\GameController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Anax\\TextFilter\\TextFilter",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\App\\BlackJackClass\\BlackJack"
-        ]
+        "date": "2024-20",
+        "key": "Additions",
+        "value": 0
     },
     {
-        "name": "\\Anax\\TextFilter\\TextFilter",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\BlackJackClass\\BlackJack",
-        "size": 3000,
-        "relations": [
-            "\\App\\BlackJackClass\\Player",
-            "\\App\\DeckClass\\Deck"
-        ]
-    },
-    {
-        "name": "\\App\\Controller\\CardControllerJSON",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
-            "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\App\\DeckClass\\Deck",
-            "\\Exception",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\App\\BlackJackClass\\BlackJack"
-        ]
-    },
-    {
-        "name": "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\DeckClass\\Deck",
-        "size": 3000,
-        "relations": [
-            "\\App\\DeckClass\\BaseDeck"
-        ]
-    },
-    {
-        "name": "\\App\\Controller\\LibraryControllerJSON",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\App\\Repository\\BooksRepository",
-            "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
-            "\\Exception"
-        ]
-    },
-    {
-        "name": "\\App\\Controller\\CardController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\App\\DeckClass\\Deck"
-        ]
-    },
-    {
-        "name": "\\App\\Controller\\MyJSONController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
-        ]
-    },
-    {
-        "name": "\\App\\Controller\\MyController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Anax\\TextFilter\\TextFilter",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\HttpFoundation\\Request"
-        ]
-    },
-    {
-        "name": "\\App\\BlackJackClass\\Player",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\DeckClass\\BaseDeck",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\DeckClass\\Card",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\Kernel",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Component\\HttpKernel\\Kernel"
-        ]
-    },
-    {
-        "name": "\\Symfony\\Component\\HttpKernel\\Kernel",
-        "size": 3000,
-        "relations": []
+        "date": "2024-20",
+        "key": "Removes",
+        "value": 0
     }
 ];
 
-    /**
-     * Thanks to http://bl.ocks.org/mbostock/raw/7607999/
-     */
-    function updateRelationsChart() {
+    data.forEach(function (d) {
+        d.date = format.parse(d.date);
+    });
+
+    var layers = stack(nest.entries(data));
+
+    x.domain(d3.extent(data, function (d) {
+        return d.date;
+    }));
+    y.domain([0, d3.max(data, function (d) {
+        return d.y0 + d.y;
+    })]);
+
+    svg.selectAll(".layer")
+        .data(layers)
+        .enter().append("path")
+        .attr("class", "layer")
+        .attr("d", function (d) {
+            return area(d.values);
+        })
+        .style("fill", function (d, i) {
+            return z(i);
+        });
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
 
-        var diameter = document.getElementById('chart-relations').offsetWidth,
-            radius = diameter / 2,
-            innerRadius = radius - 120;
-
-        var cluster = d3.layout.cluster()
-            .size([360, innerRadius])
-            .sort(null)
-            .value(function (d) {
-                return d.size;
-            });
-
-        var bundle = d3.layout.bundle();
-
-        var line = d3.svg.line.radial()
-            .interpolate("bundle")
-            .tension(.85)
-            .radius(function (d) {
-                return d.y;
-            })
-            .angle(function (d) {
-                return d.x / 180 * Math.PI;
-            });
-
-        var svg = d3.select("#chart-relations").append("svg")
-            .attr("width", diameter)
-            .attr("height", diameter)
-            .append("g")
-            .attr("transform", "translate(" + radius + "," + radius + ")");
-
-        var link = svg.append("g").selectAll(".link"),
-            node = svg.append("g").selectAll(".node");
-
-
-        var nodes = cluster.nodes(packageHierarchy(relations)),
-            links = packageImports(nodes);
-        link = link
-            .data(bundle(links))
-            .enter().append("path")
-            .each(function (d) {
-                d.source = d[0], d.target = d[d.length - 1];
-            })
-            .attr("class", "link")
-            .attr("d", line);
-
-        node = node
-            .data(nodes.filter(function (n) {
-                return !n.children;
-            }))
-            .enter().append("text")
-            .attr("class", "node")
-            .attr("dy", ".31em")
-            .attr("transform", function (d) {
-                return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)");
-            })
-            .style("text-anchor", function (d) {
-                return d.x < 180 ? "start" : "end";
-            })
-            .text(function (d) {
-                return d.key;
-            })
-            .on("mouseover", mouseovered)
-            .on("mouseout", mouseouted);
-
-
-//        d3.data(relations);
-
-        function mouseovered(d) {
-            node
-                .each(function (n) {
-                    n.target = n.source = false;
-                });
-
-            link
-                .classed("link--target", function (l) {
-                    if (l.target === d) return l.source.source = true;
-                })
-                .classed("link--source", function (l) {
-                    if (l.source === d) return l.target.target = true;
-                })
-                .filter(function (l) {
-                    return l.target === d || l.source === d;
-                })
-                .each(function () {
-                    this.parentNode.appendChild(this);
-                });
-
-            node
-                .classed("node--target", function (n) {
-                    return n.target;
-                })
-                .classed("node--source", function (n) {
-                    return n.source;
-                });
-        }
-
-        function mouseouted(d) {
-            link
-                .classed("link--target", false)
-                .classed("link--source", false);
-
-            node
-                .classed("node--target", false)
-                .classed("node--source", false);
-        }
-
-        d3.select(self.frameElement).style("height", diameter + "px");
-
-        // Lazily construct the package hierarchy from class names.
-        function packageHierarchy(classes) {
-            var map = {};
-
-            function find(name, data) {
-                name = (data ? name + ' ' : name);
-                var node = map[name], i;
-                if (!node) {
-                    node = map[name] = data || {name: name, children: []};
-                    if (name.length) {
-                        node.parent = find(name.substring(0, i = name.lastIndexOf("\\")));
-                        if (!node.parent.children) {
-                            node.parent.children = []; // fix anomalies
-                        }
-                        node.parent.children.push(node);
-                        node.key = name;//name.substring(i + 1);
-                    }
-                }
-                return node;
-            }
-
-            classes.forEach(function (d) {
-                find(d.name, d);
-            });
-
-            return map[""];
-        }
-
-        // Return a list of imports for the given array of nodes.
-        function packageImports(nodes) {
-            var map = {},
-                imports = [];
-
-            // Compute a map from name to node.
-            nodes.forEach(function (d) {
-                map[d.name] = d;
-            });
-
-            // For each import, construct a link from the source to target node.
-            nodes.forEach(function (d) {
-                if (d.relations) d.relations.forEach(function (i) {
-                    imports.push({source: map[d.name], target: map[i]});
-                });
-            });
-
-            return imports;
-        }
-
-
-    }
-
-    document.onreadystatechange = function () {
-        if (document.readyState === 'complete') {
-            updateRelationsChart();
-        }
-    };
+    sortTable(document.getElementById('table-commits'), 1, -1);
+    sortTable(document.getElementById('table-authors'), 1, -1);
 
 </script>
