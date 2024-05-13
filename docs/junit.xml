@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="19" assertions="23" errors="0" warnings="0" failures="0" skipped="0" time="0.039639">
+    <testsuite name="Project Test Suite" tests="19" assertions="23" errors="0" warnings="0" failures="0" skipped="0" time="0.039639">
+      <testsuite name="App\BlackJackClass\BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" tests="18" assertions="21" errors="0" warnings="0" failures="0" skipped="0" time="0.037411">
+        <testcase name="testCreateBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="14" assertions="1" time="0.014544"/>
+        <testcase name="testGetPlayerBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="19" assertions="1" time="0.000873"/>
+        <testcase name="testGetScorePlayer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="25" assertions="1" time="0.001643"/>
+        <testcase name="testGetDealerBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="32" assertions="1" time="0.001082"/>
+        <testcase name="testGetDeck" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="38" assertions="1" time="0.000856"/>
+        <testcase name="testGetSecondCardDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="44" assertions="1" time="0.000872"/>
+        <testcase name="testStartGame" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="50" assertions="2" time="0.001091"/>
+        <testcase name="testHitPlayer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="59" assertions="1" time="0.001212"/>
+        <testcase name="testStandDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="67" assertions="3" time="0.005384"/>
+        <testcase name="testRevealSecondCardDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="76" assertions="1" time="0.000910"/>
+        <testcase name="testCompareResults" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="83" assertions="1" time="0.000997"/>
+        <testcase name="testCompareResultsLost" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="93" assertions="1" time="0.000898"/>
+        <testcase name="testCompareResultsWin" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="104" assertions="1" time="0.002289"/>
+        <testcase name="testCompareResultsDraw" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="115" assertions="1" time="0.000968"/>
+        <testcase name="testCompareResultsDealerBust" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="125" assertions="1" time="0.000914"/>
+        <testcase name="testCalculateScore" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="147" assertions="1" time="0.000982"/>
+        <testcase name="testCalculateScoreWithExtraAce" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="153" assertions="1" time="0.000903"/>
+        <testcase name="testCalculateScoreEmptyArray" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="159" assertions="1" time="0.000992"/>
+      </testsuite>
+      <testsuite name="App\Dice\DiceTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Dice/DiceTest.php" tests="1" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.002228">
+        <testcase name="testCreateDice" class="App\Dice\DiceTest" classname="App.Dice.DiceTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Dice/DiceTest.php" line="16" assertions="2" time="0.002228"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
