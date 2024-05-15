@@ -1,29 +1,346 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="19" assertions="23" errors="0" warnings="0" failures="0" skipped="0" time="0.039639">
-    <testsuite name="Project Test Suite" tests="19" assertions="23" errors="0" warnings="0" failures="0" skipped="0" time="0.039639">
-      <testsuite name="App\BlackJackClass\BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" tests="18" assertions="21" errors="0" warnings="0" failures="0" skipped="0" time="0.037411">
-        <testcase name="testCreateBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="14" assertions="1" time="0.014544"/>
-        <testcase name="testGetPlayerBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="19" assertions="1" time="0.000873"/>
-        <testcase name="testGetScorePlayer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="25" assertions="1" time="0.001643"/>
-        <testcase name="testGetDealerBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="32" assertions="1" time="0.001082"/>
-        <testcase name="testGetDeck" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="38" assertions="1" time="0.000856"/>
-        <testcase name="testGetSecondCardDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="44" assertions="1" time="0.000872"/>
-        <testcase name="testStartGame" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="50" assertions="2" time="0.001091"/>
-        <testcase name="testHitPlayer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="59" assertions="1" time="0.001212"/>
-        <testcase name="testStandDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="67" assertions="3" time="0.005384"/>
-        <testcase name="testRevealSecondCardDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="76" assertions="1" time="0.000910"/>
-        <testcase name="testCompareResults" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="83" assertions="1" time="0.000997"/>
-        <testcase name="testCompareResultsLost" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="93" assertions="1" time="0.000898"/>
-        <testcase name="testCompareResultsWin" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="104" assertions="1" time="0.002289"/>
-        <testcase name="testCompareResultsDraw" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="115" assertions="1" time="0.000968"/>
-        <testcase name="testCompareResultsDealerBust" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="125" assertions="1" time="0.000914"/>
-        <testcase name="testCalculateScore" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="147" assertions="1" time="0.000982"/>
-        <testcase name="testCalculateScoreWithExtraAce" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="153" assertions="1" time="0.000903"/>
-        <testcase name="testCalculateScoreEmptyArray" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="159" assertions="1" time="0.000992"/>
+  <testsuite name="" tests="30" assertions="43" errors="0" warnings="0" failures="0" skipped="0" time="0.507414">
+    <testsuite name="Project Test Suite" tests="30" assertions="43" errors="0" warnings="0" failures="0" skipped="0" time="0.507414">
+      <testsuite name="App\BlackJackClass\BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" tests="20" assertions="23" errors="0" warnings="0" failures="0" skipped="0" time="0.027431">
+        <testcase name="testCreateBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="14" assertions="1" time="0.010139"/>
+        <testcase name="testGetPlayerBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="19" assertions="1" time="0.000748"/>
+        <testcase name="testGetScorePlayer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="25" assertions="1" time="0.001193"/>
+        <testcase name="testGetDealerBlackJack" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="32" assertions="1" time="0.000713"/>
+        <testcase name="testGetDeck" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="38" assertions="1" time="0.000715"/>
+        <testcase name="testGetSecondCardDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="44" assertions="1" time="0.000715"/>
+        <testcase name="testStartGame" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="50" assertions="2" time="0.000775"/>
+        <testcase name="testHitPlayer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="59" assertions="1" time="0.000789"/>
+        <testcase name="testStandDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="67" assertions="3" time="0.002495"/>
+        <testcase name="testRevealSecondCardDealer" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="76" assertions="1" time="0.000749"/>
+        <testcase name="testCompareResults" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="83" assertions="1" time="0.000835"/>
+        <testcase name="testCompareResultsLost" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="93" assertions="1" time="0.000760"/>
+        <testcase name="testCompareResultsWin" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="104" assertions="1" time="0.000771"/>
+        <testcase name="testCompareResultsDraw" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="115" assertions="1" time="0.000768"/>
+        <testcase name="testCompareResultsDealerBust" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="125" assertions="1" time="0.000759"/>
+        <testcase name="testCompareResultsPlayerLost" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="136" assertions="1" time="0.000778"/>
+        <testcase name="testPlayerLoseWithLowerScore" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="147" assertions="1" time="0.000963"/>
+        <testcase name="testCalculateScore" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="158" assertions="1" time="0.001242"/>
+        <testcase name="testCalculateScoreWithExtraAce" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="164" assertions="1" time="0.000791"/>
+        <testcase name="testCalculateScoreEmptyArray" class="App\BlackJackClass\BlackJackTest" classname="App.BlackJackClass.BlackJackTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/BlackJack/BlackJackTest.php" line="170" assertions="1" time="0.000732"/>
       </testsuite>
-      <testsuite name="App\Dice\DiceTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Dice/DiceTest.php" tests="1" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.002228">
-        <testcase name="testCreateDice" class="App\Dice\DiceTest" classname="App.Dice.DiceTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Dice/DiceTest.php" line="16" assertions="2" time="0.002228"/>
+      <testsuite name="App\Controller\CardControllerTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" tests="4" assertions="11" errors="0" warnings="0" failures="0" skipped="0" time="0.339778">
+        <testcase name="testHolderPage" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="12" assertions="5" time="0.262935"/>
+        <testcase name="testRenderDeck" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="24" assertions="2" time="0.030738"/>
+        <testcase name="testShuffleCards" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="34" assertions="2" time="0.026789"/>
+        <testcase name="testDraw" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="44" assertions="2" time="0.019316">
+          <system-out>Symfony\Component\DomCrawler\Crawler Object
+(
+    [uri:protected] =&gt; http://localhost/card/deck/draw
+    [defaultNamespacePrefix:Symfony\Component\DomCrawler\Crawler:private] =&gt; default
+    [namespaces:Symfony\Component\DomCrawler\Crawler:private] =&gt; Array
+        (
+        )
+
+    [cachedNamespaces:Symfony\Component\DomCrawler\Crawler:private] =&gt; ArrayObject Object
+        (
+            [storage:ArrayObject:private] =&gt; Array
+                (
+                )
+
+        )
+
+    [baseHref:Symfony\Component\DomCrawler\Crawler:private] =&gt; http://localhost/card/deck/draw
+    [document:Symfony\Component\DomCrawler\Crawler:private] =&gt; DOMDocument Object
+        (
+            [doctype] =&gt; (object value omitted)
+            [implementation] =&gt; (object value omitted)
+            [documentElement] =&gt; (object value omitted)
+            [actualEncoding] =&gt; UTF-8
+            [encoding] =&gt; UTF-8
+            [xmlEncoding] =&gt; UTF-8
+            [standalone] =&gt; 
+            [xmlStandalone] =&gt; 
+            [version] =&gt; 1.0
+            [xmlVersion] =&gt; 1.0
+            [strictErrorChecking] =&gt; 1
+            [documentURI] =&gt; 
+            [config] =&gt; 
+            [formatOutput] =&gt; 
+            [validateOnParse] =&gt; 
+            [resolveExternals] =&gt; 
+            [preserveWhiteSpace] =&gt; 1
+            [recover] =&gt; 
+            [substituteEntities] =&gt; 
+            [firstElementChild] =&gt; (object value omitted)
+            [lastElementChild] =&gt; (object value omitted)
+            [childElementCount] =&gt; 1
+            [nodeName] =&gt; #document
+            [nodeValue] =&gt; 
+            [nodeType] =&gt; 9
+            [parentNode] =&gt; 
+            [childNodes] =&gt; (object value omitted)
+            [firstChild] =&gt; (object value omitted)
+            [lastChild] =&gt; (object value omitted)
+            [previousSibling] =&gt; 
+            [nextSibling] =&gt; 
+            [attributes] =&gt; 
+            [ownerDocument] =&gt; 
+            [namespaceURI] =&gt; 
+            [prefix] =&gt; 
+            [localName] =&gt; 
+            [baseURI] =&gt; 
+            [textContent] =&gt; 
+        
+        Deck - Draw a card
+        
+                    
+        
+                    
+            
+
+
+{
+    "imports": {
+        "app": "/assets/app-987668ac81e2e084df2ad471cb78b3c8.js",
+        "/assets/styles/app.css": "data:application/javascript,",
+        "@hotwired/stimulus": "/assets/vendor/@hotwired/stimulus/stimulus.index-b5b1d00e42695b8959b4a1e94e3bc92a.js",
+        "@symfony/stimulus-bundle": "/assets/@symfony/stimulus-bundle/loader-e1ee9ace0562f2e6a52301e4ccc8627d.js",
+        "/assets/@symfony/stimulus-bundle/controllers.js": "/assets/@symfony/stimulus-bundle/controllers-9d42643c079ab11f27a3a9614f81cc2f.js",
+        "/assets/@symfony/ux-turbo/turbo_controller.js": "/assets/@symfony/ux-turbo/turbo_controller-ce5e32dafdec0b7752f02e3e2cb25751.js",
+        "/assets/controllers/hello_controller.js": "/assets/controllers/hello_controller-55882fcad241d2bea50276ea485583bc.js",
+        "@hotwired/turbo": "/assets/vendor/@hotwired/turbo/turbo.index-810f44ef1a202a441e4866b7a4c72d11.js"
+    }
+}
+
+
+
+
+import 'app';            
+    
+        
+            
+                
+                    
+                        
+                            Start
+                            Om
+                            Redovisning
+                            Api-routes
+                            Alla sessions
+                            Ta bort sessions data
+                            Tur?
+                            Kort
+                            BlackJack
+                            Biblotek
+                            Rapport om metrics
+                        
+                    
+                
+                
+    Draw a card
+
+    Kort kvar: 52
+    
+        
+    
+        
+    
+
+            
+            
+                © 2024 Sebastian Olausson
+            
+        
+    
+
+
+        )
+
+    [nodes:Symfony\Component\DomCrawler\Crawler:private] =&gt; Array
+        (
+            [0] =&gt; DOMElement Object
+                (
+                    [schemaTypeInfo] =&gt; 
+                    [tagName] =&gt; html
+                    [firstElementChild] =&gt; (object value omitted)
+                    [lastElementChild] =&gt; (object value omitted)
+                    [childElementCount] =&gt; 2
+                    [previousElementSibling] =&gt; 
+                    [nextElementSibling] =&gt; 
+                    [nodeName] =&gt; html
+                    [nodeValue] =&gt; 
+        
+        Deck - Draw a card
+        
+                    
+        
+                    
+            
+
+
+{
+    "imports": {
+        "app": "/assets/app-987668ac81e2e084df2ad471cb78b3c8.js",
+        "/assets/styles/app.css": "data:application/javascript,",
+        "@hotwired/stimulus": "/assets/vendor/@hotwired/stimulus/stimulus.index-b5b1d00e42695b8959b4a1e94e3bc92a.js",
+        "@symfony/stimulus-bundle": "/assets/@symfony/stimulus-bundle/loader-e1ee9ace0562f2e6a52301e4ccc8627d.js",
+        "/assets/@symfony/stimulus-bundle/controllers.js": "/assets/@symfony/stimulus-bundle/controllers-9d42643c079ab11f27a3a9614f81cc2f.js",
+        "/assets/@symfony/ux-turbo/turbo_controller.js": "/assets/@symfony/ux-turbo/turbo_controller-ce5e32dafdec0b7752f02e3e2cb25751.js",
+        "/assets/controllers/hello_controller.js": "/assets/controllers/hello_controller-55882fcad241d2bea50276ea485583bc.js",
+        "@hotwired/turbo": "/assets/vendor/@hotwired/turbo/turbo.index-810f44ef1a202a441e4866b7a4c72d11.js"
+    }
+}
+
+
+
+
+import 'app';            
+    
+        
+            
+                
+                    
+                        
+                            Start
+                            Om
+                            Redovisning
+                            Api-routes
+                            Alla sessions
+                            Ta bort sessions data
+                            Tur?
+                            Kort
+                            BlackJack
+                            Biblotek
+                            Rapport om metrics
+                        
+                    
+                
+                
+    Draw a card
+
+    Kort kvar: 52
+    
+        
+    
+        
+    
+
+            
+            
+                © 2024 Sebastian Olausson
+            
+        
+    
+
+
+                    [nodeType] =&gt; 1
+                    [parentNode] =&gt; (object value omitted)
+                    [childNodes] =&gt; (object value omitted)
+                    [firstChild] =&gt; (object value omitted)
+                    [lastChild] =&gt; (object value omitted)
+                    [previousSibling] =&gt; (object value omitted)
+                    [nextSibling] =&gt; 
+                    [attributes] =&gt; (object value omitted)
+                    [ownerDocument] =&gt; (object value omitted)
+                    [namespaceURI] =&gt; 
+                    [prefix] =&gt; 
+                    [localName] =&gt; html
+                    [baseURI] =&gt; 
+                    [textContent] =&gt; 
+        
+        Deck - Draw a card
+        
+                    
+        
+                    
+            
+
+
+{
+    "imports": {
+        "app": "/assets/app-987668ac81e2e084df2ad471cb78b3c8.js",
+        "/assets/styles/app.css": "data:application/javascript,",
+        "@hotwired/stimulus": "/assets/vendor/@hotwired/stimulus/stimulus.index-b5b1d00e42695b8959b4a1e94e3bc92a.js",
+        "@symfony/stimulus-bundle": "/assets/@symfony/stimulus-bundle/loader-e1ee9ace0562f2e6a52301e4ccc8627d.js",
+        "/assets/@symfony/stimulus-bundle/controllers.js": "/assets/@symfony/stimulus-bundle/controllers-9d42643c079ab11f27a3a9614f81cc2f.js",
+        "/assets/@symfony/ux-turbo/turbo_controller.js": "/assets/@symfony/ux-turbo/turbo_controller-ce5e32dafdec0b7752f02e3e2cb25751.js",
+        "/assets/controllers/hello_controller.js": "/assets/controllers/hello_controller-55882fcad241d2bea50276ea485583bc.js",
+        "@hotwired/turbo": "/assets/vendor/@hotwired/turbo/turbo.index-810f44ef1a202a441e4866b7a4c72d11.js"
+    }
+}
+
+
+
+
+import 'app';            
+    
+        
+            
+                
+                    
+                        
+                            Start
+                            Om
+                            Redovisning
+                            Api-routes
+                            Alla sessions
+                            Ta bort sessions data
+                            Tur?
+                            Kort
+                            BlackJack
+                            Biblotek
+                            Rapport om metrics
+                        
+                    
+                
+                
+    Draw a card
+
+    Kort kvar: 52
+    
+        
+    
+        
+    
+
+            
+            
+                © 2024 Sebastian Olausson
+            
+        
+    
+
+
+                )
+
+        )
+
+    [isHtml:Symfony\Component\DomCrawler\Crawler:private] =&gt; 1
+    [html5Parser:Symfony\Component\DomCrawler\Crawler:private] =&gt; Masterminds\HTML5 Object
+        (
+            [defaultOptions:Masterminds\HTML5:private] =&gt; Array
+                (
+                    [encode_entities] =&gt; 
+                    [disable_html_ns] =&gt; 1
+                )
+
+            [errors:protected] =&gt; Array
+                (
+                )
+
+        )
+
+)
+</system-out>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Controller\LibraryControllerTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Controller/LibraryControllerTest.php" tests="1" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.135701">
+        <testcase name="testLibraryIndex" class="App\Controller\LibraryControllerTest" classname="App.Controller.LibraryControllerTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Controller/LibraryControllerTest.php" line="10" assertions="3" time="0.135701"/>
+      </testsuite>
+      <testsuite name="App\DeckClass\DeckTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Deck/DeckTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.002654">
+        <testcase name="testCreateDeck" class="App\DeckClass\DeckTest" classname="App.DeckClass.DeckTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Deck/DeckTest.php" line="13" assertions="1" time="0.000796"/>
+        <testcase name="testCreateDeckWithArray" class="App\DeckClass\DeckTest" classname="App.DeckClass.DeckTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Deck/DeckTest.php" line="18" assertions="1" time="0.000445"/>
+        <testcase name="testGetDeck" class="App\DeckClass\DeckTest" classname="App.DeckClass.DeckTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Deck/DeckTest.php" line="24" assertions="1" time="0.000709"/>
+        <testcase name="testSetDeck" class="App\DeckClass\DeckTest" classname="App.DeckClass.DeckTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Deck/DeckTest.php" line="30" assertions="1" time="0.000705"/>
+      </testsuite>
+      <testsuite name="App\Dice\DiceTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Dice/DiceTest.php" tests="1" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.001850">
+        <testcase name="testCreateDice" class="App\Dice\DiceTest" classname="App.Dice.DiceTest" file="/home/sebbe/dbwebb-kurser/mvc/me/report/tests/Dice/DiceTest.php" line="16" assertions="2" time="0.001850"/>
       </testsuite>
     </testsuite>
   </testsuite>
