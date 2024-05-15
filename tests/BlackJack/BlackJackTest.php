@@ -133,7 +133,18 @@ class BlackJackTest extends TestCase {
         $this->assertEquals("Banken blev tjock, du vinner!", $result);
     }
 
-    public function compareResultsPlayerLost(): void {
+    public function testCompareResultsPlayerLost(): void {
+        $blackjack = new BlackJack();
+        $blackjack->startGame();
+        $getPlayer = $blackjack->getPlayer();
+        $getDealer = $blackjack->getDealer();
+        $getPlayer->setScore(15);
+        $getDealer->setScore(20);
+        $result = $blackjack->compareResults();
+        $this->assertEquals("Du förlorade!", $result);
+    }
+
+    public function testPlayerLoseWithLowerScore(): void {
         $blackjack = new BlackJack();
         $blackjack->startGame();
         $getPlayer = $blackjack->getPlayer();
