@@ -34,3 +34,6 @@ yarn-error.log
 
 ###< phpdoc ###
 .phpdoc/
+
+###< Controller Tests ###
+/tests/Controller/
