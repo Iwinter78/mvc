@@ -117,7 +117,7 @@ class Deck extends BaseDeck
 
     /**
      * @param int $amount
-     * @return array<int<0, max>, string|null>
+     * @return array<int, string|null>
      */
     public function drawCards(int $amount): array
     {
