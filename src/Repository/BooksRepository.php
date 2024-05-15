@@ -60,7 +60,7 @@ class BooksRepository extends ServiceEntityRepository
             'name' => $data['name'],
             'author' => $data['author']
         ]);
-        $book = $stmt->fetch();
+        $book = $stmt->fetchAssociative();
 
         $bookId = $book['id'];
 
@@ -69,7 +69,7 @@ class BooksRepository extends ServiceEntityRepository
         isbn = :isbn, author = :author,
         image = :image WHERE id = :id
         ";
-        $connection->executeUpdate($sqlUpdate, [
+        $connection->executeStatement($sqlUpdate, [
             'name' => $data['name'],
             'isbn' => $data['isbn'],
             'author' => $data['author'],
