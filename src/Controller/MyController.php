@@ -143,6 +143,6 @@ class MyController extends AbstractController
     public function metrics(): Response
     {
         $data = $this->singleParseReport("metrics");
-        return $this->render('metrics.html.twig', $data);
+        return $this->render('metrics.html.twig', ["data" => $data]);
     }
 }
