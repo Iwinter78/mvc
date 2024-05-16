@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Books;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 
 /**
  * @extends ServiceEntityRepository<Books>
@@ -62,6 +63,10 @@ class BooksRepository extends ServiceEntityRepository
         ]);
         $book = $stmt->fetchAssociative();
 
+        if (!$book) {
+            throw new Exception('Boken finns inte!');
+        }
+        
         $bookId = $book['id'];
 
         $sqlUpdate = "
