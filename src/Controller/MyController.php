@@ -11,7 +11,7 @@ use Anax\TextFilter\TextFilter;
 
 class MyController extends AbstractController
 {
-    public function parseReports($namesOfReports)
+    private function parseReports($namesOfReports)
     {
         $data = [];
         $amountOfReports = count($namesOfReports);
@@ -30,29 +30,29 @@ class MyController extends AbstractController
         return $data;
     }
 
-    #[Route("/", name: "index")]
-    public function startPage(): Response
+    private function singleParseReport($nameOfReport)
     {
-        $filename = dirname(__DIR__) . "/markdown/index.md";
+        $filename = dirname(__DIR__) . "/markdown/" . $nameOfReport . ".md";
         $text     = file_get_contents($filename);
         $filter   = new TextFilter();
         $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
         $data = [
             "text" => $parsed->text,
         ];
+        return $data;
+    }
+
+    #[Route("/", name: "index")]
+    public function startPage(): Response
+    {
+        $data = $this->singleParseReport("index");
         return $this->render('index.html.twig', $data);
     }
 
     #[Route("/about", name: "about")]
     public function about(): Response
     {
-        $filename = dirname(__DIR__) . "/markdown/about.md";
-        $text     = file_get_contents($filename);
-        $filter   = new TextFilter();
-        $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
-        $data = [
-            "text" => $parsed->text,
-        ];
+        $data = $this->singleParseReport("about");
         return $this->render('about.html.twig', $data);
     }
 
@@ -142,13 +142,7 @@ class MyController extends AbstractController
     #[Route("/metrics", name: "metrics")]
     public function metrics(): Response
     {
-        $filename = dirname(__DIR__) . "/markdown/metrics.md";
-        $text     = file_get_contents($filename);
-        $filter   = new TextFilter();
-        $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
-        $data = [
-            "text" => $parsed->text,
-        ];
+        $data = $this->singleParseReport("metrics");
         return $this->render('metrics.html.twig', $data);
     }
 }
