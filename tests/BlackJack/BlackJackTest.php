@@ -109,7 +109,7 @@ class BlackJackTest extends TestCase {
         $getPlayer->setScore(21);
         $getDealer->setScore(20);
         $result = $blackjack->compareResults();
-        $this->assertEquals("Du vann!", $result);
+        $this->assertEquals("Du vinner!", $result);
     }
 
     public function testCompareResultsDraw(): void {
@@ -130,7 +130,7 @@ class BlackJackTest extends TestCase {
         $getPlayer->setScore(20);
         $getDealer->setScore(22);
         $result = $blackjack->compareResults();
-        $this->assertEquals("Banken blev tjock, du vinner!", $result);
+        $this->assertEquals("Du vinner!", $result);
     }
 
     public function testCompareResultsPlayerLost(): void {
@@ -171,6 +171,42 @@ class BlackJackTest extends TestCase {
         $blackjack = new BlackJack();
         $score = $blackjack->calculateScore([]);
         $this->assertEquals(0, $score);
+    }
+
+    public function testPreCheckPlayerWin(): void {
+        $blackjack = new BlackJack();
+        $blackjack->startGame();
+        $getPlayer = $blackjack->getPlayer();
+        $getPlayer->setScore(21);
+        $result = $blackjack->preCheckPlayerWin();
+        $this->assertTrue($result);
+    }
+
+    public function testPreCheckPlayerWinFalse(): void {
+        $blackjack = new BlackJack();
+        $blackjack->startGame();
+        $getPlayer = $blackjack->getPlayer();
+        $getPlayer->setScore(20);
+        $result = $blackjack->preCheckPlayerWin();
+        $this->assertFalse($result);
+    }
+    
+    public function testCheckIfAnyWon(): void {
+        $blackjack = new BlackJack();
+        $blackjack->startGame();
+        $getPlayer = $blackjack->getPlayer();
+        $getPlayer->setScore(22);
+        $result = $blackjack->checkIfAnyWon();
+        $this->assertTrue($result);
+    }
+
+    public function testCheckIfAnyWonFalse(): void {
+        $blackjack = new BlackJack();
+        $blackjack->startGame();
+        $getPlayer = $blackjack->getPlayer();
+        $getPlayer->setScore(20);
+        $result = $blackjack->checkIfAnyWon();
+        $this->assertFalse($result);
     }
 }
 
