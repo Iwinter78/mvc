@@ -38,15 +38,11 @@ class LibraryControllerJSON extends AbstractController
     public function showSingleBook(int $isbn, BooksRepository $bookRepository): Response
     {
         $book = $bookRepository->findOneBy(['isbn' => $isbn]);
-
-        try {
-            if (!$book) {
-                throw new Exception('Boken finns inte!');
-            }
-        } catch (Exception $e) {
-            return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
+    
+        if (!$book) {
+            return new JsonResponse(['error' => 'Boken finns inte!'], Response::HTTP_NOT_FOUND);
         }
-
+    
         $bookArray = [
             'id' => $book->getId(),
             'name' => $book->getName(),
@@ -54,7 +50,7 @@ class LibraryControllerJSON extends AbstractController
             'author' => $book->getAuthor(),
             'image' => $book->getImage(),
         ];
-
+    
         return new JsonResponse($bookArray);
     }
 }
