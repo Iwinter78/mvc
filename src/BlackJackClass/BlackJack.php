@@ -137,6 +137,24 @@ class BlackJack
         $this->dealer->setScore($this->calculateScore($this->dealer->getHand()));
     }
 
+    public function preCheckPlayerWin(): bool
+    {
+        if ($this->player->getScore() === 21) {
+            $this->revealSecondCardDealer();
+            return true;
+        }
+        return false;
+    }
+
+    public function checkIfAnyWon(): bool
+    {
+        if ($this->player->getScore() > 21 || $this->dealer->getScore() > 21) {
+            $this->stand();
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Makes the dealer stand by drawing cards until it get's 17 or more.
      */
@@ -156,15 +174,19 @@ class BlackJack
     {
         $playerScore = $this->player->getScore();
         $dealerScore = $this->dealer->getScore();
+
         if ($playerScore > 21) {
             return 'Du förlorade!';
-        } elseif ($dealerScore > 21) {
-            return 'Banken blev tjock, du vinner!';
-        } elseif ($playerScore > $dealerScore) {
-            return 'Du vann!';
-        } elseif ($playerScore < $dealerScore) {
+        }
+
+        if ($dealerScore > 21 || $playerScore > $dealerScore) {
+            return 'Du vinner!';
+        }
+
+        if ($playerScore < $dealerScore) {
             return 'Du förlorade!';
         }
+
         return 'Lika!';
     }
 }
