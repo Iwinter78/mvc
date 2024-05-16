@@ -32,6 +32,11 @@ För att kunna förbättra resultaten i rapporten så kan jag först och främst
 
 I mina upptäckter i rapporten så har jag märkt att coverage på mycket av filerna har varit väldigt dålig på mycket av koden. Detta då det ej finns tester för för all kod som har skrivits eller att det redan finns tester som täcker en del av koden men inte allt. Någonting annat jag även upptäckte var att det finns metoder som har högre komplexitet än väntat. Dock så behöver inte detta vara någonting dåligt då jag anser att koden utför ett arbete på ett bra sätt och därav inte behöver faktureras om eller ändras om. I fall jag skulle behöva göra en återgärd så hade det varit att ha mer coverage i metoden för att styrka dess komplexitet.
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Iwinter78/mvc/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Iwinter78/mvc/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/Iwinter78/mvc/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Iwinter78/mvc/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/Iwinter78/mvc/badges/build.png?b=main)](https://scrutinizer-ci.com/g/Iwinter78/mvc/build-status/main)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/Iwinter78/mvc/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
+
 Förbättringar
 ===========================
 De förbättringar som jag främst hade velat fokusera på är att öka mitt kvalitéindex på Scrutinizer och fixa de buggar och rader med kod som den varnar för. En annan förbättring hade jag velat implementera är att öka kodtäckningen på de klasser och metoder som antingen inte har någon eller har en väldigt liten kodtäckning men som inte täcker hela klassen eller metoden. Jag skulle även vilja fixa de issues där det finns tydliga indikationer på att det finns delar i koden som är utdaterade och behöves fixas genom att utnyttja de nyare metoderna för att lösa problemet. Även de buggar som både Phpmetrics och Scrutinizer varnar för vill jag även försöka lösa så att de inte existerar längre.
