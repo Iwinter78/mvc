@@ -97,15 +97,11 @@ class Books
      */
     public function addBook(array $data): void
     {
-        try {
-            if (isset($data['title'], $data['isbn'], $data['author'], $data['image'])) {
-                $this->setName($data['title']);
-                $this->setIsbn($data['isbn']);
-                $this->setAuthor($data['author']);
-                $this->setImage($data['image']);
-            }
-        } catch (Exception $error) {
-            throw new Exception($error);
+        if (isset($data['title'], $data['isbn'], $data['author'], $data['image'])) {
+            $this->setName($data['title']);
+            $this->setIsbn($data['isbn']);
+            $this->setAuthor($data['author']);
+            $this->setImage($data['image']);
         }
     }
 }
