@@ -41,8 +41,6 @@ class GameController extends AbstractController
         $session->set('blackjack', $blackjack);
 
         $session->set('blackjack', $blackjack);
-        $session->set('stand', false);
-        $session->set('hit', false);
 
         $player = $blackjack->getPlayer();
         $dealer = $blackjack->getDealer();
@@ -53,8 +51,7 @@ class GameController extends AbstractController
         $player->setScore($playerScore);
         $dealer->setScore($dealerScore);
 
-        if ($playerScore === 21) {
-            $blackjack->revealSecondCardDealer();
+        if ($blackjack->prePlayerWinCheck()) {
             $session->set('result', $blackjack->compareResults());
         }
 
@@ -70,67 +67,60 @@ class GameController extends AbstractController
     #[Route("/game/blackjack/hit", name: "blackjack_hit", methods: ['POST'])]
     public function blackjackHit(SessionInterface $session): Response
     {
-        $session->set('hit', true);
         $data = [];
-        if (gettype($session->get('hit') == 'boolean')) {
-            /** @var BlackJack $blackjack */
-            $blackjack = $session->get('blackjack');
-            $blackjack->dealCard();
+        /** @var BlackJack $blackjack */
+        $blackjack = $session->get('blackjack');
+        $blackjack->dealCard();
 
-            $player = $blackjack->getPlayer();
-            $dealer = $blackjack->getDealer();
+        $player = $blackjack->getPlayer();
+        $dealer = $blackjack->getDealer();
 
-            $playerScore = $blackjack->calculateScore($player->getHand());
-            $dealerScore = $blackjack->calculateScore($dealer->getHand());
+        $playerScore = $blackjack->calculateScore($player->getHand());
+        $dealerScore = $blackjack->calculateScore($dealer->getHand());
 
-
-            if ($playerScore === 21 || $playerScore > 21) {
-                $blackjack->stand();
-                $session->set('result', $blackjack->compareResults());
-            }
-
-            $player->setScore($playerScore);
-            $dealer->setScore($dealerScore);
-
-            $data = [
-                "player" => $player,
-                "dealer" => $dealer,
-                "playerScore" => $playerScore,
-                "dealerScore" => $dealerScore,
-            ];
+        if($blackjack->checkIfAnyWon()) {
+            $session->set('result', $blackjack->compareResults());
         }
+
+        $player->setScore($playerScore);
+        $dealer->setScore($dealerScore);
+
+        $data = [
+            "player" => $player,
+            "dealer" => $dealer,
+            "playerScore" => $playerScore,
+            "dealerScore" => $dealerScore,
+        ];
         return $this->render('blackjack/blackjack.html.twig', $data);
     }
 
     #[Route("/game/blackjack/stand", name: "blackjack_stand", methods: ['POST'])]
     public function blackjackStand(SessionInterface $session): Response
     {
-        $session->set('stand', true);
         $data = [];
-        if (gettype($session->get('stand') == 'boolean')) {
-            /** @var BlackJack $blackjack */
-            $blackjack = $session->get('blackjack');
-            $blackjack->stand();
+        /** @var BlackJack $blackjack */
+        $blackjack = $session->get('blackjack');
+        $blackjack->stand();
 
-            $player = $blackjack->getPlayer();
-            $dealer = $blackjack->getDealer();
+        $player = $blackjack->getPlayer();
+        $dealer = $blackjack->getDealer();
 
-            $playerScore = $blackjack->calculateScore($player->getHand());
-            $dealerScore = $blackjack->calculateScore($dealer->getHand());
+        $playerScore = $blackjack->calculateScore($player->getHand());
+        $dealerScore = $blackjack->calculateScore($dealer->getHand());
 
-            $player->setScore($playerScore);
-            $dealer->setScore($dealerScore);
+        $player->setScore($playerScore);
+        $dealer->setScore($dealerScore);
 
-            $result = $blackjack->compareResults();
-            $session->set('result', $result);
+        $result = $blackjack->compareResults();
+        $session->set('result', $result);
 
-            $data = [
-                "player" => $player,
-                "dealer" => $dealer,
-                "playerScore" => $playerScore,
-                "dealerScore" => $dealerScore,
-            ];
-        }
+        $data = [
+            "player" => $player,
+            "dealer" => $dealer,
+            "playerScore" => $playerScore,
+            "dealerScore" => $dealerScore,
+        ];
+
         return $this->render('blackjack/blackjack.html.twig', $data);
     }
 
