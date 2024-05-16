@@ -51,7 +51,7 @@ class GameController extends AbstractController
         $player->setScore($playerScore);
         $dealer->setScore($dealerScore);
 
-        if ($blackjack->prePlayerWinCheck()) {
+        if ($blackjack->preCheckPlayerWin()) {
             $session->set('result', $blackjack->compareResults());
         }
 
@@ -67,7 +67,6 @@ class GameController extends AbstractController
     #[Route("/game/blackjack/hit", name: "blackjack_hit", methods: ['POST'])]
     public function blackjackHit(SessionInterface $session): Response
     {
-        $data = [];
         /** @var BlackJack $blackjack */
         $blackjack = $session->get('blackjack');
         $blackjack->dealCard();
