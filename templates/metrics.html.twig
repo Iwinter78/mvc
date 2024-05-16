@@ -3,7 +3,9 @@
 {% block title %}Rapport om metrics{% endblock %}
 
 {% block body %}
-{% for metricName, metricData in data %}
-    {{ metricData.text|raw}}
+<div class="report-container">
+    {% for metricName, metricData in data %}
+    {{ metricData|raw}}
 {% endfor %}
+</div>
 {% endblock %}
