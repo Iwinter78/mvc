@@ -36,6 +36,16 @@ body {
     text-align: center;
 }
 
+.report-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.report-container img {
+    width: 100%;
+    height: auto;
+}
+
 .pseudo-code {
     display: flex;
     justify-content: center;
