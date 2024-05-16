@@ -60,7 +60,7 @@ class LibraryController extends AbstractController
         if ($book === null) {
             return $this->redirectToRoute('app_library_show_books');
         }
-        
+
         $entityManager->remove($book);
         $entityManager->flush();
 
@@ -86,7 +86,7 @@ class LibraryController extends AbstractController
         if ($book === null) {
             return $this->redirectToRoute('app_library_show_books');
         }
-        
+
         $entityManager->persist($book);
         $entityManager->flush();
 
