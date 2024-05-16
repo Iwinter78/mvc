@@ -46,6 +46,11 @@ body {
     height: auto;
 }
 
+.report-container a > img {
+    width: 90px;
+    height: 30px;
+}
+
 .pseudo-code {
     display: flex;
     justify-content: center;
