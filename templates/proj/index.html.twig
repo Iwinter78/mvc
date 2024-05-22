@@ -1,0 +1,18 @@
+{% extends "projbase.html.twig" %}
+
+{% block title %}Avancerat BlackJack{% endblock %}
+
+{% block body %}
+<section class="introduction-container">
+    <h1>Avancerat BlackJack</h1>
+    <p>
+        Välkommen till det lite mer avancerade varianten av BlackJack!
+        Här kommer du kunna spela BlackJack med tre händer samtidigt och med 4 kortlekar i högen.
+        Det kommer även finnas att automatiserad funktion som "räknar kort" och som kan ge dig en riktlinje ifall du borde satsa högt eller lågt.
+        Fenomenet kallas för "Card Counting" och mer om det kan du läsa om <a href="https://en.wikipedia.org/wiki/Card_counting">här.</a>
+    </p>
+    <form action="{{ path('advancedblackjack') }}" method="POST">
+        <input type="submit" name="start" value="Starta spelet">
+    </form>
+</section>
+{% endblock %}
