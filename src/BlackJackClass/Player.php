@@ -13,6 +13,8 @@ class Player
      */
     private int $score;
 
+    private $stand = false;
+
     public function __construct()
     {
         $this->hand = [];
@@ -46,5 +48,15 @@ class Player
     public function setScore(int $score): void
     {
         $this->score = $score;
+    }
+
+    public function stand(): void 
+    {
+        $this->stand = true;
+    }
+
+    public function checkIfStand(): bool
+    {
+        return $this->stand;
     }
 }
