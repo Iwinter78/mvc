@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Proj{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('proj') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="content-wrap">
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a href="{{ path('index') }}">Start</a></li>
+                            <li><a href="{{ path('about') }}">Om</a></li>
+                            <li><a href="{{ path('report') }}">Redovisning</a></li>
+                            <li><a href="{{ path('api') }}">Api-routes</a></li>
+                            <li><a href="{{ path('all_sessions')}}">Alla sessions</a></li>
+                            <li><a href="{{ path('delete_session')}}">Ta bort sessions data</a></li>
+                            <li><a href="{{ path('lucky') }}">Tur?</a></li>
+                            <li><a href="{{ path('card')}}">Kort</a></li>
+                            <li><a href="{{ path('game')}}">BlackJack</a></li>
+                            <li><a href="{{ path('app_library')}}">Biblotek</a></li>
+                            <li><a href="{{ path('metrics') }}">Rapport om metrics</a></li>
+                            <li><a href="{{ path('proj') }}">Proj</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                {% block body %}{% endblock %}
+            </div>
+            <footer class="footer">
+                <p>&copy; 2024 Sebastian Olausson</p>
+            </footer>
+        </div>
+    </body>
+</html>
