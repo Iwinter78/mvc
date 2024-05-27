@@ -11,7 +11,11 @@
         Det kommer även finnas att automatiserad funktion som "räknar kort" och som kan ge dig en riktlinje ifall du borde satsa högt eller lågt.
         Fenomenet kallas för "Card Counting" och mer om det kan du läsa om <a href="https://en.wikipedia.org/wiki/Card_counting">här.</a>
     </p>
-    <form action="{{ path('advancedblackjack') }}" method="POST">
+    <form action="{{ path('advancedblackjack', {'players': '3', 'deck': '5' }) }}" method="POST">
+        <label for="amount-of-players">Antal spelare:</label>
+        <input type="number" name="amountOfPlayers" id="amount-of-players" min="1" required>
+        <label for="amount-of-decks">Antal kortlekar:</label>
+        <input type="number" name="amountOfDecks" id="amount-of-decks" min="1" required>
         <input type="submit" name="start" value="Starta spelet">
     </form>
 </section>
