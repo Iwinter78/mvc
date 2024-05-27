@@ -3,4 +3,28 @@
 {% block title %}Avancerat Blackjack{% endblock %}
 
 {% block body %}
+    <div>
+        <h1>Nuvarande räkning: {{ currentCount }}</h1>
+    </div>
+    
+    <div class="card-row">
+        {% for card in dealer.hand %}
+            <div class="card">{{ card|raw }}</div>
+        {% endfor %}
+        <p>Bankens poäng: {{ dealer.score }}</p>
+    </div>
+    <div class="horizontal-align">
+        {% for player in players %}
+            <div>
+                <div class="card-row">
+                    {% for card in player.hand %}
+                        <div class="card">{{ card|raw }}</div>
+                    {% endfor %}
+                </div>
+                <section>
+                    <p>Poäng: {{ player.score }}</p>
+                </section>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
