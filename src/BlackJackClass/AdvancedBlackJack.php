@@ -1,15 +1,17 @@
 <?php
 
-namespace AdvancedBlackJack;
+namespace App\BlackJackClass;
+
 use App\DeckClass\Deck;
 use App\BlackJackClass\Player;
+use App\BlackJackClass\BlackJack;
 
 class AdvancedBlackJack 
 {
     function __construct(int $players, int $decks) {
         $this->players = $players;
         $this->dealer = new Player();
-        $this->deck = [];
+        $this->decks = [];
         $this->players = [];
         $this->secondCardDealer = [];
 
@@ -18,7 +20,9 @@ class AdvancedBlackJack
         }
 
         for ($i = 0; $i < $decks; $i++) {
-            $this->deck = array_merge($this->deck, (new Deck())->getDeck());
+            $deck = new Deck();
+            $this->decks[] = $deck;
+            $this->deck = array_merge($this->decks, $deck->getDeck());
         }
 
     }
@@ -27,12 +31,12 @@ class AdvancedBlackJack
         return $this->players;
     }
 
-    public function getDealer(): array {
+    public function getDealer(): Player {
         return $this->dealer;
     }
 
-    public function getDeck(): array {
-        return $this->deck;
+    public function getDecks(): array {
+        return $this->decks;
     }
 
     public function getSecondCardDealer(): array {
@@ -40,38 +44,100 @@ class AdvancedBlackJack
     }
 
     public function setHand(Player $player, array $cards): void {
-        array_merge($player->getHand(), $cards);
+        $player->setHand(array_merge($player->getHand(), $cards));
     }
 
-    private function drawCard(Player $player, int $amount): void {
+    private function drawCard($player, int $amount): void {
+        if (!is_array($player)) {
+            $player = [$player];
+        }
+    
+        $deckIndex = 0;
         for ($i = 0; $i < $amount; $i++) {
-            $cards = $this->deck->drawCards(1);
-            $player->setHand($player, $cards);
+            foreach ($player as $p) {
+                if ($deckIndex >= count($this->decks)) {
+                    return;
+                }
+    
+                $isEmpty = count($this->decks[$deckIndex]->getDeck()) === 0;
+                while ($this->decks[$deckIndex] === $isEmpty) {
+                    $deckIndex++;
+
+                    if ($deckIndex >= count($this->decks)) {
+                        return;
+                    }
+                }
+    
+                $cards = $this->decks[$deckIndex]->drawCards(1);
+                $this->setHand($p, $cards);
+            }
         }
     }
 
-    private function calculateScore(array $hand): void {
+    private function calculateScore(array $hand): int {
         $blackjack = new BlackJack();
-        foreach ($hand as $card) {
-            $blackjack->calculateScore($card);
+        $deck = new Deck();
+        $rawHand = $deck->toRawData(array_filter($hand));
+        $score = $blackjack->calculateScore($rawHand);
+        return $score;
+    }
+
+    private function countCards(array $hand): int {
+        $deck = new Deck();
+
+        $count = 0;
+        $rawHand = $deck->toRawData(array_filter($hand));
+
+        $negative = ['J', 'Q', 'K', 'A', '10']; // -1
+        $positive = ['2', '3', '4', '5', '6']; // +1
+
+        foreach ($rawHand as $card) {
+            if (in_array($card, $negative)) {
+                $count--;
+            } elseif (in_array($card, $positive)) {
+                $count++;
+            }
         }
 
+        return $count;
+    }
+
+    public function calculateTotalCount($players, $dealer): int {
+        $players = is_array($players) ? $players : [$players];
+        $dealer = is_array($dealer) ? $dealer : [$dealer];
+    
+        $count = 0;
+        foreach ($players as $player) {
+            $count += $this->countCards($player->getHand());
+        }
+
+        foreach ($dealer as $d) {
+            $count += $this->countCards($d->getHand());
+        }
+
+        return $count;
     }
 
     public function startGame(): void {
-        $this->deck->shuffleCards();
+
+        foreach ($this->decks as $deck) {
+            $deck->shuffleDeck();
+        }
+
         $this->drawCard($this->dealer, 1);
         $this->drawCard($this->secondCardDealer, 1);
 
         foreach ($this->players as $player) {
             $this->drawCard($player, 2);
-            $this->calculateScore($player->getHand());
+            $playerScore = $this->calculateScore($player->getHand());
+            $player->setScore($playerScore);
         }
 
-        $this->calculateScore($this->dealer->getHand());
+        $dealerScore = $this->calculateScore($this->dealer->getHand());
+        $this->dealer->setScore($dealerScore);
     }
 
-    public function hit(Player $player): void {
+    public function hit(array $player): void {
         $this->drawCard($player, 1);
         $this->calculateScore($player->getHand());
     }
