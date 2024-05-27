@@ -1,9 +1,11 @@
 @import url(./blackjack.css);
+@import url(./card.css);
 
 :root {
     --pink: #f0f;
     --black: #000;
     --white: #fff;
+    --red: #f00;
 }
 
 body {
@@ -53,4 +55,10 @@ ul {
 .introduction-container {
     width: 70%;
     margin: 0 auto;
+}
+
+.horizontal-align {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
