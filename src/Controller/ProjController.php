@@ -14,8 +14,21 @@ class ProjController extends AbstractController
 {
     #[Route('/proj', name: 'proj')]
     public function index(): Response 
-    {
+    {   
         return $this->render('proj/index.html.twig');
+    }
+
+    #[Route('/proj/about', name: 'proj_about')]
+    public function about(): Response 
+    {   
+        $filename = dirname(__DIR__) . "/markdown/" . "aboutproj.md";
+        $text     = file_get_contents($filename);
+        $filter   = new TextFilter();
+        $parsed   = $filter->parse($text, ["shortcode", "markdown"]);
+        $data = [
+            "text" => $parsed->text,
+        ];
+        return $this->render('proj/about.html.twig', $data);
     }
 
     #[Route('proj/advancedblackjack/{players}/{deck}', name: 'advancedblackjack')]
@@ -23,27 +36,35 @@ class ProjController extends AbstractController
     {   
         $players = (int)$players;
         $deck = (int)$deck;
-
+    
         if(!$session->has('advancedBlackJack')) {
             $session->set('advancedBlackJack', new AdvancedBlackJack($players, $deck));
+            $session->set('count', 0);
+            $session->set('gameStarted', false);
         }
-
+    
         $advancedBlackJack = $session->get('advancedBlackJack');
-        $advancedBlackJack->startGame();
+        
+        if(!$session->get('gameStarted')) {
+            $advancedBlackJack->startGame();
+            $session->set('gameStarted', true);
+        }
+    
         $session->set('advancedBlackJack', $advancedBlackJack);
-
+    
         $players = $advancedBlackJack->getPlayers();
         $dealer = $advancedBlackJack->getDealer();
-
-        print_r($advancedBlackJack->calculateTotalCount($players, $dealer));
-
+    
+        $count = $session->get("count");
+        $count += $advancedBlackJack->calculateTotalCount($players, $dealer);
+    
         $data = [
             "players" => $advancedBlackJack->getPlayers(),
             "dealer" => $advancedBlackJack->getDealer(),
-            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer),
+            "currentCount" => $count,
             "results" => []
         ];
-
+    
         return $this->render('proj/advancedblackjack.html.twig', $data);
     }
 
@@ -59,10 +80,13 @@ class ProjController extends AbstractController
         $advancedBlackJack->hit($players[$getIndex]);
         $session->set('advancedBlackJack', $advancedBlackJack);
 
+        $count = $session->get("count");
+        $count += $advancedBlackJack->calculateTotalCount($players, $dealer);
+
         $data = [
             "players" => $advancedBlackJack->getPlayers(),
             "dealer" => $advancedBlackJack->getDealer(),
-            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer),
+            "currentCount" => $count,
             "results" => []
         ];
 
@@ -81,10 +105,13 @@ class ProjController extends AbstractController
         $advancedBlackJack->dealerDraw();
         $session->set('advancedBlackJack', $advancedBlackJack);
 
+        $count = $session->get("count");
+        $count += $advancedBlackJack->calculateTotalCount($players, $dealer);
+
         $data = [
             "players" => $advancedBlackJack->getPlayers(),
             "dealer" => $advancedBlackJack->getDealer(),
-            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer),
+            "currentCount" => $count,
             "results" => $advancedBlackJack->compareWinners()
         ];
 
