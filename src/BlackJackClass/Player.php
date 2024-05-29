@@ -50,13 +50,13 @@ class Player
         $this->score = $score;
     }
 
-    public function stand(): void 
-    {
-        $this->stand = true;
-    }
-
-    public function checkIfStand(): bool
+    public function getStand(): bool
     {
         return $this->stand;
+    }
+
+    public function setStand(bool $stand): void
+    {
+        $this->stand = $stand;
     }
 }
