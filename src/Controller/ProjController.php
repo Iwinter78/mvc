@@ -24,17 +24,24 @@ class ProjController extends AbstractController
         $players = (int)$players;
         $deck = (int)$deck;
 
-        $advancedBlackJack = new AdvancedBlackJack($players, $deck);
+        if(!$session->has('advancedBlackJack')) {
+            $session->set('advancedBlackJack', new AdvancedBlackJack($players, $deck));
+        }
+
+        $advancedBlackJack = $session->get('advancedBlackJack');
         $advancedBlackJack->startGame();
         $session->set('advancedBlackJack', $advancedBlackJack);
 
         $players = $advancedBlackJack->getPlayers();
         $dealer = $advancedBlackJack->getDealer();
 
+        print_r($advancedBlackJack->calculateTotalCount($players, $dealer));
+
         $data = [
             "players" => $advancedBlackJack->getPlayers(),
             "dealer" => $advancedBlackJack->getDealer(),
-            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer)
+            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer),
+            "results" => []
         ];
 
         return $this->render('proj/advancedblackjack.html.twig', $data);
@@ -46,7 +53,8 @@ class ProjController extends AbstractController
         $advancedBlackJack = $session->get('advancedBlackJack');
         $players = $advancedBlackJack->getPlayers();
         $dealer = $advancedBlackJack->getDealer();
-        $getIndex = $request->query->get('playerIndex');
+
+        $getIndex = $request->request->get('player');
 
         $advancedBlackJack->hit($players[$getIndex]);
         $session->set('advancedBlackJack', $advancedBlackJack);
@@ -54,9 +62,40 @@ class ProjController extends AbstractController
         $data = [
             "players" => $advancedBlackJack->getPlayers(),
             "dealer" => $advancedBlackJack->getDealer(),
-            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer)
+            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer),
+            "results" => []
         ];
 
         return $this->render('proj/advancedblackjack.html.twig', $data);
+    }
+
+    #[Route('proj/advancedblackjack/stand', name: 'stand')]
+    public function stand(Request $request, SessionInterface $session): Response
+    {
+        $advancedBlackJack = $session->get('advancedBlackJack');
+        $players = $advancedBlackJack->getPlayers();
+        $dealer = $advancedBlackJack->getDealer();
+        $getIndex = $request->request->get('player');
+
+        $advancedBlackJack->stand($players[$getIndex]);
+        $advancedBlackJack->dealerDraw();
+        $session->set('advancedBlackJack', $advancedBlackJack);
+
+        $data = [
+            "players" => $advancedBlackJack->getPlayers(),
+            "dealer" => $advancedBlackJack->getDealer(),
+            "currentCount" => $advancedBlackJack->calculateTotalCount($players, $dealer),
+            "results" => $advancedBlackJack->compareWinners()
+        ];
+
+        return $this->render('proj/advancedblackjack.html.twig', $data);
+    }
+
+    #[Route('proj/advancedblackjack/reset', name: 'reset')]
+    public function reset(Request $request, SessionInterface $session): Response
+    {
+        $advancedBlackJack = $session->get('advancedBlackJack');
+        $advancedBlackJack->resetRound();
+        return $this->redirectToRoute('advancedblackjack', ['players' => 3, 'deck' => 5]);
     }
 }
