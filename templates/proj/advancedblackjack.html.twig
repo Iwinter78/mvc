@@ -7,11 +7,11 @@
         <h1>Nuvarande räkning: {{ currentCount }}</h1>
     </div>
     
-    <div class="card-row">
+    <div class="dealer-row card-row">
+        <p>Bankens poäng: {{ dealer.score }}</p>
         {% for card in dealer.hand %}
             <div class="card">{{ card|raw }}</div>
         {% endfor %}
-        <p>Bankens poäng: {{ dealer.score }}</p>
     </div>
     <div class="horizontal-align">
         {% for player in players %}
