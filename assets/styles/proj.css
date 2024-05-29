@@ -62,3 +62,8 @@ ul {
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.dealer-row {
+    display: flex;
+    flex-direction: column;
+}
