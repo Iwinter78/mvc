@@ -43,6 +43,10 @@ class AdvancedBlackJack
         return $this->secondCardDealer;
     }
 
+    public function setSecondCardDealer(array $cards): void {
+        $this->secondCardDealer = array_merge($this->secondCardDealer, $cards);
+    }
+
     public function setHand(Player $player, array $cards): void {
         $player->setHand(array_merge($player->getHand(), $cards));
     }
@@ -125,30 +129,40 @@ class AdvancedBlackJack
         }
 
         $this->drawCard($this->dealer, 1);
-        $this->drawCard($this->secondCardDealer, 1);
+        $this->setSecondCardDealer($this->decks[0]->drawCards(1));
 
         foreach ($this->players as $player) {
             $this->drawCard($player, 2);
             $playerScore = $this->calculateScore($player->getHand());
             $player->setScore($playerScore);
+
+            if ($playerScore === 21) {
+                $player->stand();
+            }
         }
 
         $dealerScore = $this->calculateScore($this->dealer->getHand());
         $this->dealer->setScore($dealerScore);
+
     }
 
-    public function hit(array $player): void {
+    public function hit(Player $player): void {
         $this->drawCard($player, 1);
-        $this->calculateScore($player->getHand());
+        $newCalculation = $this->calculateScore($player->getHand());
+        $player->setScore($newCalculation);
+
+        if ($newCalculation >= 21) {
+            $player->stand();
+        }
     }
 
     public function stand(Player $player): void {
-        $player->stand();
+        $player->setStand(true);
     }
 
-    public function hasAllPlayersStood(): bool {
+    private function hasAllPlayersStood(): bool {
         foreach ($this->players as $player) {
-            if (!$player->checkIfStand()) {
+            if (!$player->getStand()) {
                 return false;
             }
         }
@@ -156,32 +170,47 @@ class AdvancedBlackJack
     }
 
     public function dealerDraw(): void {
-        if ($this->hasAllPlayersStood()) {
-            while ($this->dealer->getScore() < 17) {
-                $this->drawCard($this->dealer, 1);
-                $this->calculateScore($this->dealer->getHand());
-            }
-        }
-    }
-
-    public function compareWinners(): string {
+        array_merge($this->dealer->getHand(), $this->getSecondCardDealer());
         $dealerScore = $this->dealer->getScore();
-        $winners = [];
-        foreach ($this->players as $player) {
-            $playerScore = $player->getScore();
-            if ($playerScore > 21) {
-                $winners[] = "Du vann!";
-            } else if ($dealerScore > 21) {
-                $winners[] = "Du vann!";
-            } else if ($playerScore > $dealerScore) {
-                $winners[] = "Du vann!";
-            } else if ($playerScore < $dealerScore) {
-                $winners[] = "Du förlorade";
-            } else {
-                $winners[] = "Lika!";
-            }
+
+        while ($dealerScore < 17 && $this->hasAllPlayersStood()) {
+            $this->drawCard($this->dealer, 1);
+            $dealerScore = $this->calculateScore($this->dealer->getHand());
+            $this->dealer->setScore($dealerScore);
         }
-        return $winners;
     }
 
+    public function compareWinners(): array {
+        if ($this->hasAllPlayersStood()) {
+            $dealerScore = $this->dealer->getScore();
+            $winners = [];
+            foreach ($this->players as $player) {
+                $playerScore = $player->getScore();
+                if ($playerScore > 21) {
+                    $winners[] = "Du vann!";
+                } else if ($dealerScore > 21) {
+                    $winners[] = "Du vann!";
+                } else if ($playerScore > $dealerScore) {
+                    $winners[] = "Du vann!";
+                } else if ($playerScore < $dealerScore) {
+                    $winners[] = "Du förlorade";
+                } else {
+                    $winners[] = "Lika!";
+                }
+            }
+            return $winners;
+        }
+        return [];
+    }
+
+    public function resetRound(): void {
+        $numPlayers = count($this->players);
+        $this->dealer = new Player();
+        $this->players = [];
+        $this->secondCardDealer = [];
+    
+        for ($i = 0; $i < $numPlayers; $i++) {
+            $this->players[] = new Player();
+        }
+    }
 }
