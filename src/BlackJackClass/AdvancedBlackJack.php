@@ -96,6 +96,7 @@ class AdvancedBlackJack
         $positive = ['2', '3', '4', '5', '6']; // +1
 
         foreach ($rawHand as $card) {
+            $card = substr($card, 0, 1);
             if (in_array($card, $negative)) {
                 $count--;
             } elseif (in_array($card, $positive)) {
@@ -137,7 +138,7 @@ class AdvancedBlackJack
             $player->setScore($playerScore);
 
             if ($playerScore === 21) {
-                $player->stand();
+                $player->setStand(true);
             }
         }
 
@@ -152,7 +153,7 @@ class AdvancedBlackJack
         $player->setScore($newCalculation);
 
         if ($newCalculation >= 21) {
-            $player->stand();
+            $player->setStand(true);
         }
     }
 
