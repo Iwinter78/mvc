@@ -23,8 +23,36 @@
                 </div>
                 <section>
                     <p>Poäng: {{ player.score }}</p>
+                    {% if not player.stand %}
+                    <form action="{{ path('hit') }}" method="POST">
+                        <input type="hidden" name="player" value="{{ loop.index0 }}">
+                        <input type="submit" name="hit" value="Hit">
+                    </form>
+                    <form action="{{ path('stand') }}" method="POST">
+                        <input type="hidden" name="player" value="{{ loop.index0 }}">
+                        <input type="submit" name="stand" value="Stand">
+                    </form>
+                    {% else %}
+                    <form action="{{ path('hit') }}" method="POST">
+                        <input type="hidden" name="player" value="{{ loop.index0 }}">
+                        <input type="submit" name="hit" value="Hit" disabled>
+                    </form>
+                    <form action="{{ path('stand') }}" method="POST">
+                        <input type="hidden" name="player" value="{{ loop.index0 }}">
+                        <input type="submit" name="stand" value="Stand" disabled>
+                    </form>
+                    {% endif %}
+
+                    {% if results|length > 0 %}
+                    <p>{{ results[loop.index0] }}</p>
+                    {% endif %}
                 </section>
             </div>
         {% endfor %}
+        {% if results|length > 0 %}
+        <form action="{{ path('reset') }}" method="POST">
+            <input type="submit" value="Spela igen">
+        </form>
+        {% endif %}
     </div>
 {% endblock %}
