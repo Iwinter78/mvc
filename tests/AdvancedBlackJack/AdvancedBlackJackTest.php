@@ -88,7 +88,6 @@ class AdvancedBlackJackTest extends TestCase
         $advancedBlackJack = new AdvancedBlackJack(1, 1);
         $advancedBlackJack->startGame();
         $players = $advancedBlackJack->getPlayers();
-        $dealer = $advancedBlackJack->getDealer();
         $advancedBlackJack->hit($players[0]);
         $hand = $players[0]->getHand();
         $this->assertIsArray($hand);
@@ -147,7 +146,6 @@ class AdvancedBlackJackTest extends TestCase
         $result = $advancedBlackJack->compareWinners();
         $this->assertIsArray($result);
         $this->assertEmpty($result);
-        //$this->assertFalse($result);
     }
 
     public function testHasAllPlayersStoodTrue(): void
