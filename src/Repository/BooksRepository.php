@@ -66,7 +66,7 @@ class BooksRepository extends ServiceEntityRepository
         if (!$book) {
             throw new Exception('Boken finns inte!');
         }
-        
+
         $bookId = $book['id'];
 
         $sqlUpdate = "

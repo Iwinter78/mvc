@@ -13,14 +13,14 @@ use App\BlackJackClass\AdvancedBlackJack;
 class ProjController extends AbstractController
 {
     #[Route('/proj', name: 'proj')]
-    public function index(): Response 
-    {   
+    public function index(): Response
+    {
         return $this->render('proj/index.html.twig');
     }
 
     #[Route('/proj/about', name: 'proj_about')]
-    public function about(): Response 
-    {   
+    public function about(): Response
+    {
         $filename = dirname(__DIR__) . "/markdown/" . "aboutproj.md";
         $text     = file_get_contents($filename);
         $filter   = new TextFilter();
@@ -33,38 +33,38 @@ class ProjController extends AbstractController
 
     #[Route('proj/advancedblackjack/{players}/{deck}', name: 'advancedblackjack')]
     public function start(string $players, string $deck, Request $request, SessionInterface $session): Response
-    {   
+    {
         $players = (int)$players;
         $deck = (int)$deck;
-    
+
         if(!$session->has('advancedBlackJack')) {
             $session->set('advancedBlackJack', new AdvancedBlackJack($players, $deck));
             $session->set('count', 0);
             $session->set('gameStarted', false);
         }
-    
+
         $advancedBlackJack = $session->get('advancedBlackJack');
-        
+
         if(!$session->get('gameStarted')) {
             $advancedBlackJack->startGame();
             $session->set('gameStarted', true);
         }
-    
+
         $session->set('advancedBlackJack', $advancedBlackJack);
-    
+
         $players = $advancedBlackJack->getPlayers();
         $dealer = $advancedBlackJack->getDealer();
-    
+
         $count = $session->get("count");
         $count += $advancedBlackJack->calculateTotalCount($players, $dealer);
-    
+
         $data = [
             "players" => $advancedBlackJack->getPlayers(),
             "dealer" => $advancedBlackJack->getDealer(),
             "currentCount" => $count,
             "results" => []
         ];
-    
+
         return $this->render('proj/advancedblackjack.html.twig', $data);
     }
 

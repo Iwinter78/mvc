@@ -1,6 +1,116 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack",
+            "name": "AdvancedBlackJack",
+            "summary": "Class\u0020AdvancedBlackJack\u0020manages\u0020the\u0020advanced\u0020verison\u0020of\u0020the\u0020BlackJack\u0020game.",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method___construct"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AgetPlayers\u0028\u0029",
+            "name": "getPlayers",
+            "summary": "Gets\u0020the\u0020players.",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_getPlayers"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AgetDealer\u0028\u0029",
+            "name": "getDealer",
+            "summary": "Gets\u0020the\u0020dealer.",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_getDealer"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AgetDecks\u0028\u0029",
+            "name": "getDecks",
+            "summary": "Gets\u0020the\u0020decks.",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_getDecks"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AgetSecondCardDealer\u0028\u0029",
+            "name": "getSecondCardDealer",
+            "summary": "Gets\u0020the\u0020second\u0020card\u0020for\u0020the\u0020dealer",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_getSecondCardDealer"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AsetSecondCardDealer\u0028\u0029",
+            "name": "setSecondCardDealer",
+            "summary": "Sets\u0020the\u0020second\u0020card\u0020for\u0020the\u0020dealer",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_setSecondCardDealer"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AsetHand\u0028\u0029",
+            "name": "setHand",
+            "summary": "Sets\u0020the\u0020hand\u0020for\u0020a\u0020player",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_setHand"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AdrawCard\u0028\u0029",
+            "name": "drawCard",
+            "summary": "Draws\u0020cards\u0020for\u0020the\u0020player\u0020with\u0020a\u0020specified\u0020amount",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_drawCard"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AcalculateScore\u0028\u0029",
+            "name": "calculateScore",
+            "summary": "Calculates\u0020the\u0020score\u0020for\u0020a\u0020hand",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_calculateScore"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AcountCards\u0028\u0029",
+            "name": "countCards",
+            "summary": "Manages\u0020the\u0020count\u0020for\u0020the\u0020cards\u0020using\u0020the\u0020HI\u002DLO\u0020system",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_countCards"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AcalculateTotalCount\u0028\u0029",
+            "name": "calculateTotalCount",
+            "summary": "Calculates\u0020the\u0020total\u0020count\u0020for\u0020the\u0020players\u0020and\u0020the\u0020dealer\u0020and\u0020returns\u0020the\u0020value",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_calculateTotalCount"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AstartGame\u0028\u0029",
+            "name": "startGame",
+            "summary": "Starts\u0020the\u0020game\u0020by\u0020shuffling\u0020the\u0020decks,\u0020drawing\u0020cards\u0020for\u0020the\u0020dealer\u0020and\u0020the\u0020players",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_startGame"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003Ahit\u0028\u0029",
+            "name": "hit",
+            "summary": "Does\u0020the\u0020hit\u0020action\u0020for\u0020the\u0020player",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_hit"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AhasAllPlayersStood\u0028\u0029",
+            "name": "hasAllPlayersStood",
+            "summary": "Checks\u0020if\u0020all\u0020the\u0020players\u0020stand\u0020flag\u0020has\u0020changed\u0020to\u0020true",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_hasAllPlayersStood"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AdealerDraw\u0028\u0029",
+            "name": "dealerDraw",
+            "summary": "Manges\u0020the\u0020draw\u0020functionallity\u0020for\u0020the\u0020dealer",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_dealerDraw"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AcompareWinners\u0028\u0029",
+            "name": "compareWinners",
+            "summary": "Compares\u0020the\u0020winners\u0020and\u0020returns\u0020the\u0020result",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_compareWinners"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003AresetRound\u0028\u0029",
+            "name": "resetRound",
+            "summary": "Resets\u0020the\u0020players\u0020and\u0020the\u0020dealer\u0020for\u0020a\u0020new\u0020round",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#method_resetRound"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003A\u0024players",
+            "name": "players",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#property_players"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003A\u0024dealer",
+            "name": "dealer",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#property_dealer"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003A\u0024decks",
+            "name": "decks",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#property_decks"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\AdvancedBlackJack\u003A\u003A\u0024secondCardDealer",
+            "name": "secondCardDealer",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-AdvancedBlackJack.html#property_secondCardDealer"
+        },                {
             "fqsen": "\\App\\BlackJackClass\\BlackJack",
             "name": "BlackJack",
             "summary": "Class\u0020controlling\u0020the\u0020game\u0020BlackJack",
@@ -121,6 +231,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-BlackJackClass-Player.html#method_setScore"
         },                {
+            "fqsen": "\\App\\BlackJackClass\\Player\u003A\u003AgetStand\u0028\u0029",
+            "name": "getStand",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-Player.html#method_getStand"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\Player\u003A\u003AsetStand\u0028\u0029",
+            "name": "setStand",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-Player.html#method_setStand"
+        },                {
             "fqsen": "\\App\\BlackJackClass\\Player\u003A\u003A\u0024hand",
             "name": "hand",
             "summary": "",
@@ -130,6 +250,11 @@ Search.appendIndex(
             "name": "score",
             "summary": "",
             "url": "classes/App-BlackJackClass-Player.html#property_score"
+        },                {
+            "fqsen": "\\App\\BlackJackClass\\Player\u003A\u003A\u0024stand",
+            "name": "stand",
+            "summary": "",
+            "url": "classes/App-BlackJackClass-Player.html#property_stand"
         },                {
             "fqsen": "\\App\\Controller\\CardController",
             "name": "CardController",
@@ -410,6 +535,41 @@ Search.appendIndex(
             "name": "apiQuote",
             "summary": "",
             "url": "classes/App-Controller-MyJSONController.html#method_apiQuote"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController",
+            "name": "ProjController",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Aabout\u0028\u0029",
+            "name": "about",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_about"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Astart\u0028\u0029",
+            "name": "start",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_start"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Ahit\u0028\u0029",
+            "name": "hit",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_hit"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Astand\u0028\u0029",
+            "name": "stand",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_stand"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Areset\u0028\u0029",
+            "name": "reset",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_reset"
         },                {
             "fqsen": "\\App\\DeckClass\\BaseDeck",
             "name": "BaseDeck",
