@@ -157,10 +157,6 @@ class AdvancedBlackJack
         }
     }
 
-    public function stand(Player $player): void {
-        $player->setStand(true);
-    }
-
     private function hasAllPlayersStood(): bool {
         foreach ($this->players as $player) {
             if (!$player->getStand()) {
@@ -188,13 +184,13 @@ class AdvancedBlackJack
             foreach ($this->players as $player) {
                 $playerScore = $player->getScore();
                 if ($playerScore > 21) {
-                    $winners[] = "Du vann!";
+                    $winners[] = "Du förlorade!";
                 } else if ($dealerScore > 21) {
                     $winners[] = "Du vann!";
                 } else if ($playerScore > $dealerScore) {
                     $winners[] = "Du vann!";
                 } else if ($playerScore < $dealerScore) {
-                    $winners[] = "Du förlorade";
+                    $winners[] = "Du förlorade!";
                 } else {
                     $winners[] = "Lika!";
                 }
