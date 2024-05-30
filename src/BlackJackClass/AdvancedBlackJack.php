@@ -9,9 +9,30 @@ use App\BlackJackClass\BlackJack;
 /**
  * Class AdvancedBlackJack manages the advanced verison of the BlackJack game.
  */
-class AdvancedBlackJack 
+class AdvancedBlackJack
 {
-    function __construct(int $players, int $decks) {
+    /**
+     * @var array<int, Player>
+     */
+    private $players;
+
+    /**
+     * @var Player
+     */
+    private $dealer;
+
+    /**
+     * @var array<int, Deck>
+     */
+    private $decks;
+
+    /**
+     * @var array<int, string>
+     */
+    private $secondCardDealer;
+
+    public function __construct(int $players, int $decks)
+    {
         $this->players = $players;
         $this->dealer = new Player();
         $this->decks = [];
@@ -25,7 +46,6 @@ class AdvancedBlackJack
         for ($i = 0; $i < $decks; $i++) {
             $deck = new Deck();
             $this->decks[] = $deck;
-            $this->deck = array_merge($this->decks, $deck->getDeck());
         }
 
     }
@@ -33,42 +53,71 @@ class AdvancedBlackJack
      * Gets the players.
      * @return array<int, Player>
      */
-    public function getPlayers(): array {
+    public function getPlayers(): array
+    {
         return $this->players;
     }
-
-    public function getDealer(): Player {
+    /**
+     * Gets the dealer.
+     * @return Player
+     */
+    public function getDealer(): Player
+    {
         return $this->dealer;
     }
 
-    public function getDecks(): array {
+    /**
+     * Gets the decks.
+     * @return array<int, Deck>
+     */
+    public function getDecks(): array
+    {
         return $this->decks;
     }
 
-    public function getSecondCardDealer(): array {
+    /**
+     * Gets the second card for the dealer
+     * @return array<int, string>
+     */
+    public function getSecondCardDealer(): array
+    {
         return $this->secondCardDealer;
     }
-
-    public function setSecondCardDealer(array $cards): void {
+    /**
+     * Sets the second card for the dealer
+     * @param array<int, string|null> $cards
+     */
+    public function setSecondCardDealer(array $cards): void
+    {
         $this->secondCardDealer = array_merge($this->secondCardDealer, $cards);
     }
-
-    public function setHand(Player $player, array $cards): void {
+    /**
+     * Sets the hand for a player
+     * @param Player $player
+     * @param array<int, string|null> $cards
+     */
+    public function setHand(Player $player, array $cards): void
+    {
         $player->setHand(array_merge($player->getHand(), $cards));
     }
-
-    private function drawCard($player, int $amount): void {
+    /**
+     * Draws cards for the player with a specified amount
+     * @param Player|array<int, Player> $player
+     * @param int $amount
+     */
+    private function drawCard($player, int $amount): void
+    {
         if (!is_array($player)) {
             $player = [$player];
         }
-    
+
         $deckIndex = 0;
         for ($i = 0; $i < $amount; $i++) {
             foreach ($player as $p) {
                 if ($deckIndex >= count($this->decks)) {
                     return;
                 }
-    
+
                 $isEmpty = count($this->decks[$deckIndex]->getDeck()) === 0;
                 while ($this->decks[$deckIndex] === $isEmpty) {
                     $deckIndex++;
@@ -77,14 +126,20 @@ class AdvancedBlackJack
                         return;
                     }
                 }
-    
+
                 $cards = $this->decks[$deckIndex]->drawCards(1);
                 $this->setHand($p, $cards);
             }
         }
     }
 
-    private function calculateScore(array $hand): int {
+    /**
+     * Calculates the score for a hand
+     * @param array<int, string|null> $hand
+     * @return int
+     */
+    private function calculateScore(array $hand): int
+    {
         $blackjack = new BlackJack();
         $deck = new Deck();
         $rawHand = $deck->toRawData(array_filter($hand));
@@ -92,7 +147,13 @@ class AdvancedBlackJack
         return $score;
     }
 
-    private function countCards(array $hand): int {
+    /**
+     * Manages the count for the cards using the HI-LO system
+     * @param array<int, string|null> $hand
+     * @return int
+     */
+    private function countCards(array $hand): int
+    {
         $deck = new Deck();
 
         $count = 0;
@@ -113,10 +174,17 @@ class AdvancedBlackJack
         return $count;
     }
 
-    public function calculateTotalCount($players, $dealer): int {
+    /**
+     * Calculates the total count for the players and the dealer and returns the value
+     * @param Player|array<int, Player> $players
+     * @param Player|array<int, Player> $dealer
+     * @return int
+     */
+    public function calculateTotalCount($players, $dealer): int
+    {
         $players = is_array($players) ? $players : [$players];
         $dealer = is_array($dealer) ? $dealer : [$dealer];
-    
+
         $count = 0;
         foreach ($players as $player) {
             $count += $this->countCards($player->getHand());
@@ -129,7 +197,12 @@ class AdvancedBlackJack
         return $count;
     }
 
-    public function startGame(): void {
+    /**
+     * Starts the game by shuffling the decks, drawing cards for the dealer and the players
+     * @return void
+     */
+    public function startGame(): void
+    {
 
         foreach ($this->decks as $deck) {
             $deck->shuffleDeck();
@@ -153,7 +226,12 @@ class AdvancedBlackJack
 
     }
 
-    public function hit(Player $player): void {
+    /**
+     * Does the hit action for the player
+     * @param Player $player
+     */
+    public function hit(Player $player): void
+    {
         $this->drawCard($player, 1);
         $newCalculation = $this->calculateScore($player->getHand());
         $player->setScore($newCalculation);
@@ -162,8 +240,12 @@ class AdvancedBlackJack
             $player->setStand(true);
         }
     }
-
-    private function hasAllPlayersStood(): bool {
+    /**
+     * Checks if all the players stand flag has changed to true
+     * @return bool
+     */
+    private function hasAllPlayersStood(): bool
+    {
         foreach ($this->players as $player) {
             if (!$player->getStand()) {
                 return false;
@@ -172,7 +254,12 @@ class AdvancedBlackJack
         return true;
     }
 
-    public function dealerDraw(): void {
+    /**
+     * Manges the draw functionallity for the dealer
+     * @return void
+     */
+    public function dealerDraw(): void
+    {
         array_merge($this->dealer->getHand(), $this->getSecondCardDealer());
         $dealerScore = $this->dealer->getScore();
 
@@ -183,7 +270,12 @@ class AdvancedBlackJack
         }
     }
 
-    public function compareWinners(): array {
+    /**
+     * Compares the winners and returns the result
+     * @return array<int, string>
+     */
+    public function compareWinners(): array
+    {
         if ($this->hasAllPlayersStood()) {
             $dealerScore = $this->dealer->getScore();
             $winners = [];
@@ -191,13 +283,14 @@ class AdvancedBlackJack
                 $playerScore = $player->getScore();
                 if ($playerScore > 21) {
                     $winners[] = "Du förlorade!";
-                } else if ($dealerScore > 21) {
+                } elseif ($dealerScore > 21) {
                     $winners[] = "Du vann!";
-                } else if ($playerScore > $dealerScore) {
+                } elseif ($playerScore > $dealerScore) {
                     $winners[] = "Du vann!";
-                } else if ($playerScore < $dealerScore) {
+                } elseif ($playerScore < $dealerScore) {
                     $winners[] = "Du förlorade!";
-                } else {
+                }
+                if ($playerScore == $dealerScore) {
                     $winners[] = "Lika!";
                 }
             }
@@ -205,13 +298,17 @@ class AdvancedBlackJack
         }
         return [];
     }
-
-    public function resetRound(): void {
+    /**
+     * Resets the players and the dealer for a new round
+     * @return void
+     */
+    public function resetRound(): void
+    {
         $numPlayers = count($this->players);
         $this->dealer = new Player();
         $this->players = [];
         $this->secondCardDealer = [];
-    
+
         for ($i = 0; $i < $numPlayers; $i++) {
             $this->players[] = new Player();
         }
