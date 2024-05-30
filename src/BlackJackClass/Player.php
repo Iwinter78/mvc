@@ -12,7 +12,9 @@ class Player
      * @var int $score
      */
     private int $score;
-
+    /**
+     * @var bool $stand
+     */
     private $stand = false;
 
     public function __construct()
