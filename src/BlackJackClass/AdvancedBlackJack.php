@@ -6,6 +6,9 @@ use App\DeckClass\Deck;
 use App\BlackJackClass\Player;
 use App\BlackJackClass\BlackJack;
 
+/**
+ * Class AdvancedBlackJack manages the advanced verison of the BlackJack game.
+ */
 class AdvancedBlackJack 
 {
     function __construct(int $players, int $decks) {
@@ -26,7 +29,10 @@ class AdvancedBlackJack
         }
 
     }
-
+    /**
+     * Gets the players.
+     * @return array<int, Player>
+     */
     public function getPlayers(): array {
         return $this->players;
     }
