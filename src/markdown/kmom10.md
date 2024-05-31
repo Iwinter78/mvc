@@ -1,0 +1,21 @@
+<h1 id="kmom10">Kmom10</h1>
+
+Krav 1-3
+=====================================
+För att implementera mitt projektet samt kraven för dem som valde jag först att skapa en helt ny klass från grunden och metoder som är mer anpassade för att kunna främst hantera fler spelare. Min förra implementation av blackjack spelet hade potential att bygga vidare då vilket var även någonting jag lutade mig väldigt mycket åt, samtidigt som jag även försökte förbättra koden från den tidigare. Jag använde även mig av kardinalitet från mitt föra blackjack spel för att hantera beräkningarna på korten. Detta för att det kändes väldigt onödigt att skriva samma metod på nytt då den fungerade utmärkt. Det enda jag gjorde var att skapa en metod i min nya klass så att jag kunde hantera den därifrån. Jag lade även till en flagga i Player klassen som jag även valde att återanvända då den är fullt kababel till att kunna användas till samma syfte här. Jag använde mig främst av listor för att hålla koll på hur många spelare det finns och spara dem, men också för kortleken. För att få mycket av funktionaliteten att fungera så har jag främst använt mig av for-each loopar för att loopa korrekt antal gånger. Jag valde att också att lägga till så att spelet räknar korten (card counting). Systemet är baserat på HI-LO där man lägger till +1 på kort mellan 2-6 och -1 för kort mellan 10-A. Resten av korten är värda noll. Jag skapade då två metoder. En som skötte beräkningen var för sig och en annan som sedan slog ihop beräkningarna för att få ett korrekt resultat.
+
+Spelet i sig hanteras med hjälp av controllers där man blir skickad till en annan controller beroende på vad man gör för val. Spelets framgång sparas i en session där jag jobbar mot sessionen fram till spelet är avslutat. När en runda avslutas så återställs spelarna med nya instanser, samma gäller med banken. Detta gör det även möjligt att behålla samma kortlek som man hade från tidigare spel. Detta för att göra det möjligt att utföra card counting då det inte blir till någon effekt ifall man återställer kortleken varje runda.
+
+För att skriva testerna så använde jag mig av phpunit som vi har gjort genom hela kursen. Där lyckades jag få ihop en kodtäckning på 96% anledningen till att det inte blev en högre var pga tidsbrist att undersöka hur jag kan skapa tester för täcker de resterande delarna.
+
+
+Tankar kring genomförande
+=================================
+Jag tyckte att projektet gick helt okej lagom med tid att genomföra. Projektet var lagom utmanande då det fortfarande tog en del tid att göra om det så att det hade stöd för flera spelare ock kortlekar samt att introducera card counting till det. Det var lagom svårt att utföra men anledningen till att jag redan har gjort någonting liknande i kursen sedan innan. Vilket gjorde att jag hade någonting att kolla tillbaka på.
+Jag skulle säga att det är ett rimligt projekt för kursen då den täcker väldigt bra de delar vi har gått igenom i kursen.
+
+Avslutande tankar
+===================================
+Matriallet och handledningen har varit lika bra som de har varit i de andra kurserna. Någonting jag skulle vilja se ifall kursen ska leva vidare är att den inte använder sig av PHP mer då programmeringsspråket håller lite halvt på att gå ner i graven men också att det finns betydligt bättre alternativ där ute. Jag är dock väldigt glad att jag har fått lära mig MVC mönstret som jag numera kan lägga till i min verktygslåda över sätt att arbeta på. Annan feedback är mer om hur man borde tänka samt utföra hur man jobbar objektorienterat då jag själv kände att det inte var helt tydligt i mitt fall hur extends bland annat fungerande helt och hur man skulle tänka runt det. Kanske ha det som en övning där man använder det på ett sätt som gör det mer tydligt?
+
+Hade jag rekommenderat kursen till någon? Beror på. För att just lära sig MVC mönstret, absolut. Men för att lära sig själva programmeringsbiten? Tror inte det. Detta med hänvisningen till det jag nämnde innan. Av mig får kursen en 6/10 då mycket av arbetet var mest att få installationer att fungera och annat jobb som måste göra innan man ens kunde börja. Är inte en jättehöjdare av det.
