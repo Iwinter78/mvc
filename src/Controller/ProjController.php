@@ -46,10 +46,10 @@ class ProjController extends AbstractController
         $advancedBlackJack = $session->get('advancedBlackJack');
 
         if(!$session->get('gameStarted')) {
-            $advancedBlackJack->startGame();
             $session->set('gameStarted', true);
         }
-
+        
+        $advancedBlackJack->startGame();
         $session->set('advancedBlackJack', $advancedBlackJack);
 
         $players = $advancedBlackJack->getPlayers();
@@ -123,6 +123,6 @@ class ProjController extends AbstractController
     {
         $advancedBlackJack = $session->get('advancedBlackJack');
         $advancedBlackJack->resetRound();
-        return $this->redirectToRoute('advancedblackjack', ['players' => 3, 'deck' => 5]);
+        return $this->redirectToRoute('advancedblackjack', ['players' => "3", 'deck' => "5"]);
     }
 }
