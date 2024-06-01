@@ -6,9 +6,9 @@
     <div>
         <h1>Nuvarande räkning: {{ currentCount }}</h1>
     </div>
-    
+
+    <p class="dealer-points">Bankens poäng: {{ dealer.score }}</p>
     <div class="dealer-row card-row">
-        <p>Bankens poäng: {{ dealer.score }}</p>
         {% for card in dealer.hand %}
             <div class="card">{{ card|raw }}</div>
         {% endfor %}
@@ -49,10 +49,10 @@
                 </section>
             </div>
         {% endfor %}
-        {% if results|length > 0 %}
-        <form action="{{ path('reset') }}" method="POST">
-            <input type="submit" value="Spela igen">
-        </form>
-        {% endif %}
     </div>
+    {% if results|length > 0 %}
+    <form action="{{ path('reset') }}" method="POST" class="play-again-form">
+        <input type="submit" value="Spela igen">
+    </form>
+    {% endif %}
 {% endblock %}
