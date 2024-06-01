@@ -100,6 +100,17 @@ class AdvancedBlackJack
     {
         $player->setHand(array_merge($player->getHand(), $cards));
     }
+
+    /**
+     * Sets the stand flag for the player
+     * @param Player $player
+     * @return void
+     */
+    public function stand(Player $player): void
+    {
+        $player->setStand(true);
+    }
+
     /**
      * Draws cards for the player with a specified amount
      * @param Player|array<int, Player> $player
