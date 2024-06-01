@@ -65,5 +65,17 @@ ul {
 
 .dealer-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.dealer-points {
+    text-align: center;
+}
+
+.play-again-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
 }
