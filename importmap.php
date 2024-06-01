@@ -13,8 +13,13 @@
  */
 return [
     'app' => [
-        'path' => './assets/app.js',
+        'path' => './assets/styles/proj.css',
+        'type' => 'css',
         'entrypoint' => true,
+    ],
+    'proj' => [
+        'path' => './assets/styles/proj.css',
+        'type' => 'css',
     ],
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
